@@ -41,22 +41,6 @@ using System.IO;
         private ROOTTYPEDECISION[] tYPEDECISIONField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string ANCESTORLIST
-        {
-            get { return this.aNCESTORLISTField; }
-            set { this.aNCESTORLISTField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string OGRSOVMLIST
-        {
-            get { return this.oGRSOVMLISTField; }
-            set { this.oGRSOVMLISTField = value; }
-        }
-
-        /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("TFS", typeof(ROOTMAINLISTTFS),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
@@ -64,6 +48,14 @@ using System.IO;
         {
             get { return this.mAINLISTField; }
             set { this.mAINLISTField = value; }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string ANCESTORLIST
+        {
+            get { return this.aNCESTORLISTField; }
+            set { this.aNCESTORLISTField = value; }
         }
 
         /// <remarks/>
@@ -74,6 +66,14 @@ using System.IO;
         {
             get { return this.aLTERNATELISTField; }
             set { this.aLTERNATELISTField = value; }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string OGRSOVMLIST
+        {
+            get { return this.oGRSOVMLISTField; }
+            set { this.oGRSOVMLISTField = value; }
         }
 
         /// <remarks/>

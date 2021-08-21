@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using System.IO;
+using System.Text;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
@@ -41,6 +42,8 @@ namespace TFS_Parser
                 }
             }*/
             
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            
             // Load the Schema Into Memory. The Error handler is also presented here.
             StringReader sr = new StringReader(File.ReadAllText("3_1.xsd"));
             XmlSchema sch = XmlSchema.Read(sr,null);
@@ -50,19 +53,22 @@ namespace TFS_Parser
             settings.Schemas.Add(sch);
 
             // Create an XmlReader specifying the settings.
-            StringReader xmlData = new StringReader(File.ReadAllText("3_1.xml"));
+            //StringReader xmlData = new StringReader(File.ReadAllText("3_1.xml"));
+            StreamReader xmlData = new StreamReader("3_1.xml",Encoding.GetEncoding("windows-1251"));
             XmlReader xr = XmlReader.Create(xmlData,settings);
 
             // Use the Native .NET Serializer (probably u cud substitute the Xsd2Code serializer here.
             XmlSerializer xs = new XmlSerializer(typeof(ROOT));
             var data = xs.Deserialize(xr);
 
+
             XmlWriterSettings settingsWriter = new XmlWriterSettings();
             settingsWriter.Indent = true;
             settingsWriter.IndentChars = ("\t");
             settingsWriter.OmitXmlDeclaration = true;
+            settingsWriter.Encoding = Encoding.GetEncoding("windows-1251");;
             
-            XmlWriter writer = XmlWriter.Create("new.xml", settingsWriter);
+            XmlWriter writer = XmlWriter.Create("new2.xml", settingsWriter);
 
             xs.Serialize(writer,data);
             
