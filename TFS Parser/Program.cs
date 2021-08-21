@@ -8,6 +8,11 @@ namespace TFS_Parser
 {
     static class Program
     {
+        //known issues: avoid [][] arrays in cs 
+        //.net5 platform error
+        //теги <OGRSOVMLIST /> и <ANCESTORLIST /> генерятся в начале, а не в нужных местах
+        // <?xml version="1.0" encoding="windows-1251" standalone="no" ?> должно быть
+        // <ROOT> должно быть пустым
         public static void Main(string[] args)
         {
             /*XmlReaderSettings settings = new XmlReaderSettings();
@@ -51,6 +56,18 @@ namespace TFS_Parser
             // Use the Native .NET Serializer (probably u cud substitute the Xsd2Code serializer here.
             XmlSerializer xs = new XmlSerializer(typeof(ROOT));
             var data = xs.Deserialize(xr);
+
+            XmlWriterSettings settingsWriter = new XmlWriterSettings();
+            settingsWriter.Indent = true;
+            settingsWriter.IndentChars = ("\t");
+            settingsWriter.OmitXmlDeclaration = true;
+            
+            XmlWriter writer = XmlWriter.Create("new.xml", settingsWriter);
+
+            xs.Serialize(writer,data);
+            
+            Console.WriteLine();
+
 
 
         }
