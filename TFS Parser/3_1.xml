@@ -54,7 +54,7 @@
         </TFS>
     </MAINLIST>
     <ANCESTORLIST />
-    <ALTERNATELIST>
+    <ALTERNATELIST >
         <ALT ID="0" Num="0" NodeStartID="1" NodeEndID="-1">
             <ITEM ID="1" />
             <ITEM ID="2" />
