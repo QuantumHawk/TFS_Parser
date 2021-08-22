@@ -9,11 +9,13 @@ namespace TFS_Parser
 {
     static class Program
     {
-        //known issues: avoid [][] arrays in cs 
+        //known issues: avoid [][] arrays in cs, replace to []
         //.net5 platform error
-        //теги <OGRSOVMLIST /> и <ANCESTORLIST /> генерятся в начале, а не в нужных местах
-        // <?xml version="1.0" encoding="windows-1251" standalone="no" ?> должно быть
-        // <ROOT> должно быть пустым
+        //tags <OGRSOVMLIST /> и <ANCESTORLIST /> генерятся в начале, а не в нужных местах
+        // <?xml version="1.0" encoding="windows-1251" standalone="no" ?>
+        // <ROOT>
+        
+        //todo динамическая генерация схемы классов из любого xml файла
         public static void Main(string[] args)
         {
             /*XmlReaderSettings settings = new XmlReaderSettings();
@@ -73,9 +75,6 @@ namespace TFS_Parser
             xs.Serialize(writer,data);
             
             Console.WriteLine();
-
-
-
         }
     }
 }
