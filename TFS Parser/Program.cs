@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Xml;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using TFS_Parser.Entities;
+using TFS_Parser.Models;
 
 namespace TFS_Parser
 {
@@ -14,36 +18,12 @@ namespace TFS_Parser
         //tags <OGRSOVMLIST /> и <ANCESTORLIST /> генерятся в начале, а не в нужных местах
         // <?xml version="1.0" encoding="windows-1251" standalone="no" ?>
         // <ROOT>
-        
+        //todo - сохранять xml в папку с проектом каталог output
         //todo динамическая генерация схемы классов из любого xml файла
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            /*XmlReaderSettings settings = new XmlReaderSettings();
-            settings.IgnoreWhitespace = true;
-
-            using (var fileStream = File.OpenText("3_1.xml"))
-            using(XmlReader reader = XmlReader.Create(fileStream, settings))
-            {
-                while(reader.Read())
-                {
-                    switch(reader.NodeType)
-                    {
-                        case XmlNodeType.Element:
-                            Console.WriteLine($"Start Element: {reader.Name}. Has Attributes? : {reader.HasAttributes}");
-                            break;
-                        case XmlNodeType.Text:
-                            Console.WriteLine($"Inner Text: {reader.Value}");
-                            break;
-                        case XmlNodeType.EndElement:
-                            Console.WriteLine($"End Element: {reader.Name}");
-                            break;
-                        default:
-                            Console.WriteLine($"Unknown: {reader.NodeType}");
-                            break;
-                    }
-                }
-            }*/
-            
+            string fileName = "3_begining.xml";
+            int i = 0;
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             
             // Load the Schema Into Memory. The Error handler is also presented here.
@@ -56,25 +36,65 @@ namespace TFS_Parser
 
             // Create an XmlReader specifying the settings.
             //StringReader xmlData = new StringReader(File.ReadAllText("3_1.xml"));
-            StreamReader xmlData = new StreamReader("3_1.xml",Encoding.GetEncoding("windows-1251"));
+            StreamReader xmlData = new StreamReader(fileName,Encoding.GetEncoding("windows-1251"));
             XmlReader xr = XmlReader.Create(xmlData,settings);
 
             // Use the Native .NET Serializer (probably u cud substitute the Xsd2Code serializer here.
             XmlSerializer xs = new XmlSerializer(typeof(ROOT));
-            var data = xs.Deserialize(xr);
-
+            ROOT data = (ROOT)xs.Deserialize(xr);
+            
+            var tfsList = data.MAINLIST;
+            var tfe = new ROOTMAINLISTTFSTFE();
+            foreach (var tfs in tfsList)
+            {
+                
+            }
 
             XmlWriterSettings settingsWriter = new XmlWriterSettings();
             settingsWriter.Indent = true;
             settingsWriter.IndentChars = ("\t");
             settingsWriter.OmitXmlDeclaration = true;
             settingsWriter.Encoding = Encoding.GetEncoding("windows-1251");;
-            
-            XmlWriter writer = XmlWriter.Create("new2.xml", settingsWriter);
+
+            XmlWriter writer = XmlWriter.Create($"new{i}.xml", settingsWriter);
 
             xs.Serialize(writer,data);
-            
+
+            using (var context = new PostgresContext())
+            {
+                try
+                {
+                    var Tfs = context.TFSes.FirstOrDefault(x => x.ID ==1);
+
+                    if (Tfs.ID > 0)
+                    {
+                        var entity = new TFS()
+                        {
+                            ID = 1,
+                            MAINLIST = data.MAINLIST,
+                            TYPEPARAM = data.TYPEPARAM,
+                            OGRSOVMLIST = data.OGRSOVMLIST,
+                            ANCESTORLIST = data.ANCESTORLIST,
+                            TYPEDECISION = data.TYPEDECISION,
+                            ALTERNATELIST = data.ALTERNATELIST
+
+                        };
+
+                        context.TFSes.Add(entity);
+
+                        var res = await context.SaveChangesAsync();
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+
             Console.WriteLine();
+            
         }
     }
 }

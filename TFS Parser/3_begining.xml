@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="windows-1251" standalone="no" ?>
+<ROOT>
+    <MAINLIST>
+        <TFS ID="1" TypeID="1" StartPointX="40" StartPointY="100" OffsetX="0" OffsetY="0" NextID="2" PriorID="-1">
+            <TFE ID="1" TypeID="5">
+                <PARAMS />
+            </TFE>
+        </TFS>
+        <TFS ID="2" TypeID="2" StartPointX="136" StartPointY="100" OffsetX="0" OffsetY="0" NextID="-1" PriorID="1">
+            <TFE ID="2" TypeID="5">
+                <PARAMS />
+            </TFE>
+            <TFE ID="3" TypeID="5">
+                <PARAMS />
+            </TFE>
+        </TFS>
+    </MAINLIST>
+    <ANCESTORLIST />
+    <ALTERNATELIST>
+        <ALT ID="0" Num="0" NodeStartID="1" NodeEndID="-1">
+            <ITEM ID="1" />
+            <ITEM ID="2" />
+        </ALT>
+    </ALTERNATELIST>
+    <OGRSOVMLIST />
+    <TYPEPARAM Value="0" />
+    <TYPEDECISION Type="0" Sovm="0">
+        <Params V="0" T="0" VD="100000000" TD="100000000" />
+    </TYPEDECISION>
+</ROOT>

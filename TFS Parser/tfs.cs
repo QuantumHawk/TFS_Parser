@@ -9,9 +9,12 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 // 
 // Этот исходный код был создан с помощью xsd, версия=4.8.3928.0.
@@ -25,73 +28,37 @@ using System.IO;
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class ROOT
+    public partial class ROOT_1
     {
-
-        private string aNCESTORLISTField;
-
-        private string oGRSOVMLISTField;
-
-        private ROOTMAINLISTTFS[] mAINLISTField;
-
-        private ROOTALTERNATELISTALT[] aLTERNATELISTField;
-
-        private ROOTTYPEPARAM[] tYPEPARAMField;
-
-        private ROOTTYPEDECISION[] tYPEDECISIONField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("TFS", typeof(ROOTMAINLISTTFS),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public ROOTMAINLISTTFS[] MAINLIST
-        {
-            get { return this.mAINLISTField; }
-            set { this.mAINLISTField = value; }
-        }
+        public ROOTMAINLISTTFS[] MAINLIST { get; set; }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string ANCESTORLIST
-        {
-            get { return this.aNCESTORLISTField; }
-            set { this.aNCESTORLISTField = value; }
-        }
+        public string ANCESTORLIST{ get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("ALT", typeof(ROOTALTERNATELISTALT),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public ROOTALTERNATELISTALT[] ALTERNATELIST
-        {
-            get { return this.aLTERNATELISTField; }
-            set { this.aLTERNATELISTField = value; }
-        }
+        public ROOTALTERNATELISTALT[] ALTERNATELIST{ get; set; }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string OGRSOVMLIST
-        {
-            get { return this.oGRSOVMLISTField; }
-            set { this.oGRSOVMLISTField = value; }
-        }
+        public string OGRSOVMLIST{ get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TYPEPARAM", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ROOTTYPEPARAM[] TYPEPARAM
-        {
-            get { return this.tYPEPARAMField; }
-            set { this.tYPEPARAMField = value; }
-        }
+        public ROOTTYPEPARAM[] TYPEPARAM { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TYPEDECISION",
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ROOTTYPEDECISION[] TYPEDECISION
-        {
-            get { return this.tYPEDECISIONField; }
-            set { this.tYPEDECISIONField = value; }
-        }
+        public ROOTTYPEDECISION[] TYPEDECISION { get; set; }
     }
 
     /// <remarks/>
@@ -103,95 +70,42 @@ using System.IO;
     public partial class ROOTMAINLISTTFS
     {
 
-        private ROOTMAINLISTTFSTFE[] tFEField;
-
-        private string idField;
-
-        private string typeIDField;
-
-        private string startPointXField;
-
-        private string startPointYField;
-
-        private string offsetXField;
-
-        private string offsetYField;
-
-        private string nextIDField;
-
-        private string priorIDField;
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TFE", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ROOTMAINLISTTFSTFE[] TFE
-        {
-            get { return this.tFEField; }
-            set { this.tFEField = value; }
-        }
+        public ROOTMAINLISTTFSTFE[] TFE { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ID
-        {
-            get { return this.idField; }
-            set { this.idField = value; }
-        }
+        [Key]
+        public string ID  {get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TypeID
-        {
-            get { return this.typeIDField; }
-            set { this.typeIDField = value; }
-        }
+        public string TypeID { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string StartPointX
-        {
-            get { return this.startPointXField; }
-            set { this.startPointXField = value; }
-        }
+        public string StartPointX { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string StartPointY
-        {
-            get { return this.startPointYField; }
-            set { this.startPointYField = value; }
-        }
+        public string StartPointY { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string OffsetX
-        {
-            get { return this.offsetXField; }
-            set { this.offsetXField = value; }
-        }
+        public string OffsetX { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string OffsetY
-        {
-            get { return this.offsetYField; }
-            set { this.offsetYField = value; }
-        }
+        public string OffsetY { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string NextID
-        {
-            get { return this.nextIDField; }
-            set { this.nextIDField = value; }
-        }
+        public string NextID { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string PriorID
-        {
-            get { return this.priorIDField; }
-            set { this.priorIDField = value; }
-        }
+        public string PriorID { get; set; }
     }
 
     /// <remarks/>
@@ -203,37 +117,20 @@ using System.IO;
     public partial class ROOTMAINLISTTFSTFE
     {
 
-        private ROOTMAINLISTTFSTFEPARAMSParamAlt[] pARAMSField;
-
-        private string idField;
-
-        private string typeIDField;
-
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("ParamAlt", typeof(ROOTMAINLISTTFSTFEPARAMSParamAlt),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public ROOTMAINLISTTFSTFEPARAMSParamAlt[] PARAMS
-        {
-            get { return this.pARAMSField; }
-            set { this.pARAMSField = value; }
-        }
+        public ROOTMAINLISTTFSTFEPARAMSParamAlt[] PARAMS { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ID
-        {
-            get { return this.idField; }
-            set { this.idField = value; }
-        }
+        [Key]
+        public string ID { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TypeID
-        {
-            get { return this.typeIDField; }
-            set { this.typeIDField = value; }
-        }
+        public string TypeID { get; set; }
     }
 
     /// <remarks/>
@@ -242,9 +139,12 @@ using System.IO;
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Keyless]
+    [NotMapped]
     public partial class ROOTMAINLISTTFSTFEPARAMSParamAlt
     {
-
+        #region fields
+        
         private string nUMBERField;
 
         private string pRED_ISTORField;
@@ -508,6 +408,10 @@ using System.IO;
         private string sOVM0Field;
 
         private string sOVM1Field;
+        
+        #endregion
+
+        #region properties
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -1564,6 +1468,8 @@ using System.IO;
             get { return this.sOVM1Field; }
             set { this.sOVM1Field = value; }
         }
+        
+        #endregion
     }
 
     /// <remarks/>
@@ -1574,56 +1480,26 @@ using System.IO;
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class ROOTALTERNATELISTALT
     {
-
-        private ROOTALTERNATELISTALTITEM[] iTEMField;
-
-        private string idField;
-
-        private string numField;
-
-        private string nodeStartIDField;
-
-        private string nodeEndIDField;
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("ITEM", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ROOTALTERNATELISTALTITEM[] ITEM
-        {
-            get { return this.iTEMField; }
-            set { this.iTEMField = value; }
-        }
+        public ROOTALTERNATELISTALTITEM[] ITEM { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ID
-        {
-            get { return this.idField; }
-            set { this.idField = value; }
-        }
+        [Key]
+        public string ID { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Num
-        {
-            get { return this.numField; }
-            set { this.numField = value; }
-        }
+        public string Num { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string NodeStartID
-        {
-            get { return this.nodeStartIDField; }
-            set { this.nodeStartIDField = value; }
-        }
+        public string NodeStartID { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string NodeEndID
-        {
-            get { return this.nodeEndIDField; }
-            set { this.nodeEndIDField = value; }
-        }
+        public string NodeEndID { get; set; }
     }
 
     /// <remarks/>
@@ -1634,16 +1510,10 @@ using System.IO;
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class ROOTALTERNATELISTALTITEM
     {
-
-        private string idField;
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ID
-        {
-            get { return this.idField; }
-            set { this.idField = value; }
-        }
+        public string ID { get; set; }
     }
 
     /// <remarks/>
@@ -1655,15 +1525,15 @@ using System.IO;
     public partial class ROOTTYPEPARAM
     {
 
-        private string valueField;
-
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Value
-        {
-            get { return this.valueField; }
-            set { this.valueField = value; }
-        }
+        [Key]
+        public string ID { get; set; }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Value { get; set; }
+        
     }
 
     /// <remarks/>
@@ -1675,35 +1545,22 @@ using System.IO;
     public partial class ROOTTYPEDECISION
     {
 
-        private ROOTTYPEDECISIONParams[] paramsField;
-
-        private string typeField;
-
-        private string sovmField;
-
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [Key]
+        public string ID { get; set; }
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Params", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ROOTTYPEDECISIONParams[] Params
-        {
-            get { return this.paramsField; }
-            set { this.paramsField = value; }
-        }
+        public ROOTTYPEDECISIONParams[] Params { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Type
-        {
-            get { return this.typeField; }
-            set { this.typeField = value; }
-        }
+        public string Type { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Sovm
-        {
-            get { return this.sovmField; }
-            set { this.sovmField = value; }
-        }
+        public string Sovm { get; set; }
     }
 
     /// <remarks/>
@@ -1715,64 +1572,24 @@ using System.IO;
     public partial class ROOTTYPEDECISIONParams
     {
 
-        private string vField;
-
-        private string tField;
-
-        private string vdField;
-
-        private string tdField;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [Key]
+        public string ID { get; set; }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string V { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string V
-        {
-            get { return this.vField; }
-            set { this.vField = value; }
-        }
+        public string T { get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string T
-        {
-            get { return this.tField; }
-            set { this.tField = value; }
-        }
+        public string VD{ get; set; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string VD
-        {
-            get { return this.vdField; }
-            set { this.vdField = value; }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TD
-        {
-            get { return this.tdField; }
-            set { this.tdField = value; }
-        }
+        public string TD{ get; set; }
     }
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-public partial class NewDataSet
-{
-
-    private ROOT[] itemsField;
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ROOT")]
-    public ROOT[] Items
-    {
-        get { return this.itemsField; }
-        set { this.itemsField = value; }
-    }
-}

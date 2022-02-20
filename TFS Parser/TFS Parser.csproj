@@ -17,6 +17,23 @@
 
     <ItemGroup>
       <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Repository" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Entities\ROOTEntity.cs" />
     </ItemGroup>
 
 </Project>
