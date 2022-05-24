@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using System.IO;
 using System.Linq;
@@ -20,9 +21,13 @@ namespace TFS_Parser
         // <ROOT>
         //todo - сохранять xml в папку с проектом каталог output
         //todo динамическая генерация схемы классов из любого xml файла
+        //доработать выгрузку (проблема с айдишниками)
+        //добавить новую таблицу с характеристиками
+        //интерфейс для обозначения характеристик
+        //
         public static async Task Main(string[] args)
         {
-            string fileName = "3_begining.xml";
+            string fileName = "3_1.xml";
             int i = 0;
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             
@@ -56,7 +61,7 @@ namespace TFS_Parser
             settingsWriter.OmitXmlDeclaration = true;
             settingsWriter.Encoding = Encoding.GetEncoding("windows-1251");;
 
-            XmlWriter writer = XmlWriter.Create($"new{i}.xml", settingsWriter);
+            XmlWriter writer = XmlWriter.Create($"new_1{i}.xml", settingsWriter);
 
             xs.Serialize(writer,data);
 
@@ -66,7 +71,23 @@ namespace TFS_Parser
                 {
                     var Tfs = context.TFSes.FirstOrDefault(x => x.ID ==1);
 
-                    if (Tfs.ID > 0)
+                    List<TFS> tfs;
+ 
+                        tfs = context.TFSes.Select(data => new TFS()
+                        {
+                            ID = data.ID,
+                            MAINLIST = data.MAINLIST,
+                            TYPEPARAM = data.TYPEPARAM,
+                            OGRSOVMLIST = data.OGRSOVMLIST,
+                            ANCESTORLIST = data.ANCESTORLIST,
+                            TYPEDECISION = data.TYPEDECISION,
+                            ALTERNATELIST = data.ALTERNATELIST
+                            
+                        }).ToList();
+                
+                    
+                    
+                    if (Tfs == null)
                     {
                         var entity = new TFS()
                         {
@@ -82,7 +103,14 @@ namespace TFS_Parser
 
                         context.TFSes.Add(entity);
 
-                        var res = await context.SaveChangesAsync();
+                        try
+                        {
+                            var res = await context.SaveChangesAsync();
+                        }
+                        catch (SystemException ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
                     }
 
                 }
