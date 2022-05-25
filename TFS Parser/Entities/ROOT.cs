@@ -142,11 +142,16 @@ using Microsoft.EntityFrameworkCore;
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [Keyless]
-    [NotMapped]
+   // [Keyless]
+   // [NotMapped]
     public partial class ROOTMAINLISTTFSTFEPARAMSParamAlt
     {
         #region fields
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [Key]
+        public string ID { get; set; }
         
         private string nUMBERField;
 
@@ -1528,8 +1533,8 @@ using Microsoft.EntityFrameworkCore;
     public partial class ROOTTYPEPARAM
     {
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        /// Ignore ID
+        [System.Xml.Serialization.XmlIgnore()]
         [Key]
         public string ID { get; set; }
         
@@ -1549,7 +1554,7 @@ using Microsoft.EntityFrameworkCore;
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         [Key]
         public string ID { get; set; }
         
@@ -1576,7 +1581,7 @@ using Microsoft.EntityFrameworkCore;
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         [Key]
         public string ID { get; set; }
         
