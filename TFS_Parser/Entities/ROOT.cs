@@ -41,8 +41,26 @@ using Microsoft.EntityFrameworkCore;
         public List<ROOTMAINLISTTFS> MAINLIST { get; set; }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string ANCESTORLIST{ get; set; }
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("ANCS", typeof(ROOTANCESTORLISTANCS),
+            Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        public List<ROOTANCESTORLISTANCS> ANCESTORLIST{ get; set; }
+
+        /// <remarks/>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+        [System.SerializableAttribute()]
+        [System.Diagnostics.DebuggerStepThroughAttribute()]
+        [System.ComponentModel.DesignerCategoryAttribute("code")]
+        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        public class ROOTANCESTORLISTANCS
+        {
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string IdBlock { get; set; }
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string IdShapeAncestor { get; set; }
+        }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -51,16 +69,36 @@ using Microsoft.EntityFrameworkCore;
         public List<ROOTALTERNATELISTALT> ALTERNATELIST{ get; set; }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string OGRSOVMLIST{ get; set; }
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("OGR", typeof(ROOTOGRSOVMLISTOGR),
+            Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        public List<ROOTOGRSOVMLISTOGR> OGRSOVMLIST{ get; set; }
+
+        /// <remarks/>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+        [System.SerializableAttribute()]
+        [System.Diagnostics.DebuggerStepThroughAttribute()]
+        [System.ComponentModel.DesignerCategoryAttribute("code")]
+        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        public class ROOTOGRSOVMLISTOGR
+        {
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string Row { get; set; }
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string Col { get; set; }
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string Value { get; set; }
+        }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TYPEPARAM", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTTYPEPARAM> TYPEPARAM { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TYPEDECISION",
-            Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("TYPEDECISION", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTTYPEDECISION> TYPEDECISION { get; set; }
     }
 

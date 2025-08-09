@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="windows-1251" standalone="no" ?>
+<ROOT>
+    <MAINLIST>
+        <TFS ID="1" TypeID="1" StartPointX="40" StartPointY="100" OffsetX="0" OffsetY="0" NextID="2" PriorID="-1">
+            <TFE ID="1" TypeID="5">
+                <PARAMS>
+				<ParamAlt NUMBER="1" PRED_ISTOR="" SOSTAV="1:1" NAME="первая" FUNCTION="(нет функции)" 
+					ELEMENT="(нет элемента)" PREDICAT="1" B="1.000000" T="1.000000" V="1.000000" A1_B_F="0.000000"
+					B_F1N="0.000000" B_F1B="0.000000" A2_B_F="0.500000" B_F2N="0.000000" B_F2B="0.000000" A3_B_F="1.000000"
+					B_F3N="0.000000" B_F3B="0.000000" A1_T_F="0.000000" T_F1N="0.000000" T_F1B="0.000000" A2_T_F="0.500000"
+					T_F2N="0.000000" T_F2B="0.000000" A3_T_F="1.000000" T_F3N="0.000000" T_F3B="0.000000" A1_V_F="0.000000"
+					V_F1N="0.000000" V_F1B="0.000000" A2_V_F="0.500000" V_F2N="0.000000" V_F2B="0.000000" A3_V_F="1.000000"
+					V_F3N="0.000000" V_F3B="0.000000" K_11="0.000000" K_00="0.000000" T_F="0.000000" V_F="0.000000"
+					A1_K11_F="0.000000" K11_F1N="0.000000" K11_F1B="0.000000" A2_K11_F="0.000000" K11_F2N="0.000000"
+					K11_F2B="0.000000" A3_K11_F="0.000000" K11_F3N="0.000000" K11_F3B="0.000000" A1_K00_F="0.000000"
+					K00_F1N="0.000000" K00_F1B="0.000000" A2_K00_F="0.000000" K00_F2N="0.000000" K00_F2B="0.000000"
+					A3_K00_F="0.000000" K00_F3N="0.000000" K00_F3B="0.000000" A1_TF_F="0.000000" TF_F1N="0.000000"
+					TF_F1B="0.000000" A2_TF_F="0.000000" TF_F2N="0.000000" TF_F2B="0.000000" A3_TF_F="0.000000" TF_F3N="0.000000"
+					TF_F3B="0.000000" A1_VF_F="0.000000" VF_F1N="0.000000" VF_F1B="0.000000" A2_VF_F="0.000000" VF_F2N="0.000000" 
+					VF_F2B="0.000000" A3_VF_F="0.000000" VF_F3N="0.000000" VF_F3B="0.000000" P_11="0.000000" P_00="0.000000" 
+					T_D="0.000000" V_D="0.000000" A1_P11_F="0.000000" P11_F1N="0.000000" P11_F1B="0.000000" A2_P11_F="0.000000" 
+					P11_F2N="0.000000" P11_F2B="0.000000" A3_P11_F="0.000000" P11_F3N="0.000000" P11_F3B="0.000000" 
+					A1_P00_F="0.000000" P00_F1N="0.000000" P00_F1B="0.000000" A2_P00_F="0.000000" P00_F2N="0.000000" 
+					P00_F2B="0.000000" A3_P00_F="0.000000" P00_F3N="0.000000" P00_F3B="0.000000" A1_TD_F="0.000000" 
+					TD_F1N="0.000000" TD_F1B="0.000000" A2_TD_F="0.000000" TD_F2N="0.000000" TD_F2B="0.000000" A3_TD_F="0.000000"
+					TD_F3N="0.000000" TD_F3B="0.000000" A1_VD_F="0.000000" VD_F1N="0.000000" VD_F1B="0.000000" A2_VD_F="0.000000"
+					VD_F2N="0.000000" VD_F2B="0.000000" A3_VD_F="0.000000" VD_F3N="0.000000" VD_F3B="0.000000" TYPE="5"
+					ELEM_DIAGN="" P_DIAGN_EL="0.000000" A1_P_EL_F="0.000000" P_EL_F1N="0.000000" P_EL_F1B="0.000000" 
+					A2_P_EL_F="0.000000" P_EL_F2N="0.000000" P_EL_F2B="0.000000" A3_P_EL_F="0.000000" P_EL_F3N="0.000000" 
+					P_EL_F3B="0.000000" SOVM="1.000000" SOVM0="1.000000" SOVM1="1.000000" />
+                </PARAMS>
+            </TFE>
+        </TFS>
+        <TFS ID="2" TypeID="2" StartPointX="136" StartPointY="100" OffsetX="0" OffsetY="0" NextID="-1" PriorID="1">
+            <TFE ID="2" TypeID="5">
+                <PARAMS />
+            </TFE>
+            <TFE ID="3" TypeID="5">
+                <PARAMS />
+            </TFE>
+        </TFS>
+        <TFS ID="3" TypeID="1" StartPointX="40" StartPointY="100" OffsetX="0" OffsetY="0" NextID="-1" PriorID="-1">
+            <TFE ID="4" TypeID="5">
+                <PARAMS />
+            </TFE>
+        </TFS>
+        <TFS ID="4" TypeID="3" StartPointX="40" StartPointY="100" OffsetX="0" OffsetY="0" NextID="-1" PriorID="-1">
+            <TFE ID="5" TypeID="5">
+                <PARAMS />
+            </TFE>
+            <TFE ID="6" TypeID="5">
+                <PARAMS />
+            </TFE>
+        </TFS>
+    </MAINLIST>
+    <ANCESTORLIST />
+    <ALTERNATELIST >
+        <ALT ID="0" Num="0" NodeStartID="1" NodeEndID="-1">
+            <ITEM ID="1" />
+            <ITEM ID="2" />
+        </ALT>
+        <ALT ID="1" Num="1" NodeStartID="2" NodeEndID="2">
+            <ITEM ID="3" />
+        </ALT>
+        <ALT ID="2" Num="1" NodeStartID="1" NodeEndID="1">
+            <ITEM ID="4" />
+        </ALT>
+    </ALTERNATELIST>
+    <OGRSOVMLIST />
+    <TYPEPARAM Value="0" />
+    <TYPEDECISION Type="0" Sovm="0">
+        <Params V="0" T="0" VD="100000000" TD="100000000" />
+    </TYPEDECISION>
+</ROOT>

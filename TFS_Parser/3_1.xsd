@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="windows-1251" standalone="no" ?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="ROOT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MAINLIST" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TFS" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="TFE" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="PARAMS" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ParamAlt" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:attribute name="NUMBER" type="xs:string" />
+                                    <xs:attribute name="PRED_ISTOR" type="xs:string" />
+                                    <xs:attribute name="SOSTAV" type="xs:string" />
+                                    <xs:attribute name="NAME" type="xs:string" />
+                                    <xs:attribute name="FUNCTION" type="xs:string" />
+                                    <xs:attribute name="ELEMENT" type="xs:string" />
+                                    <xs:attribute name="PREDICAT" type="xs:string" />
+                                    <xs:attribute name="B" type="xs:string" />
+                                    <xs:attribute name="T" type="xs:string" />
+                                    <xs:attribute name="V" type="xs:string" />
+                                    <xs:attribute name="A1_B_F" type="xs:string" />
+                                    <xs:attribute name="B_F1N" type="xs:string" />
+                                    <xs:attribute name="B_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_B_F" type="xs:string" />
+                                    <xs:attribute name="B_F2N" type="xs:string" />
+                                    <xs:attribute name="B_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_B_F" type="xs:string" />
+                                    <xs:attribute name="B_F3N" type="xs:string" />
+                                    <xs:attribute name="B_F3B" type="xs:string" />
+                                    <xs:attribute name="A1_T_F" type="xs:string" />
+                                    <xs:attribute name="T_F1N" type="xs:string" />
+                                    <xs:attribute name="T_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_T_F" type="xs:string" />
+                                    <xs:attribute name="T_F2N" type="xs:string" />
+                                    <xs:attribute name="T_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_T_F" type="xs:string" />
+                                    <xs:attribute name="T_F3N" type="xs:string" />
+                                    <xs:attribute name="T_F3B" type="xs:string" />
+                                    <xs:attribute name="A1_V_F" type="xs:string" />
+                                    <xs:attribute name="V_F1N" type="xs:string" />
+                                    <xs:attribute name="V_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_V_F" type="xs:string" />
+                                    <xs:attribute name="V_F2N" type="xs:string" />
+                                    <xs:attribute name="V_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_V_F" type="xs:string" />
+                                    <xs:attribute name="V_F3N" type="xs:string" />
+                                    <xs:attribute name="V_F3B" type="xs:string" />
+                                    <xs:attribute name="K_11" type="xs:string" />
+                                    <xs:attribute name="K_00" type="xs:string" />
+                                    <xs:attribute name="T_F" type="xs:string" />
+                                    <xs:attribute name="V_F" type="xs:string" />
+                                    <xs:attribute name="A1_K11_F" type="xs:string" />
+                                    <xs:attribute name="K11_F1N" type="xs:string" />
+                                    <xs:attribute name="K11_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_K11_F" type="xs:string" />
+                                    <xs:attribute name="K11_F2N" type="xs:string" />
+                                    <xs:attribute name="K11_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_K11_F" type="xs:string" />
+                                    <xs:attribute name="K11_F3N" type="xs:string" />
+                                    <xs:attribute name="K11_F3B" type="xs:string" />
+                                    <xs:attribute name="A1_K00_F" type="xs:string" />
+                                    <xs:attribute name="K00_F1N" type="xs:string" />
+                                    <xs:attribute name="K00_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_K00_F" type="xs:string" />
+                                    <xs:attribute name="K00_F2N" type="xs:string" />
+                                    <xs:attribute name="K00_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_K00_F" type="xs:string" />
+                                    <xs:attribute name="K00_F3N" type="xs:string" />
+                                    <xs:attribute name="K00_F3B" type="xs:string" />
+                                    <xs:attribute name="A1_TF_F" type="xs:string" />
+                                    <xs:attribute name="TF_F1N" type="xs:string" />
+                                    <xs:attribute name="TF_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_TF_F" type="xs:string" />
+                                    <xs:attribute name="TF_F2N" type="xs:string" />
+                                    <xs:attribute name="TF_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_TF_F" type="xs:string" />
+                                    <xs:attribute name="TF_F3N" type="xs:string" />
+                                    <xs:attribute name="TF_F3B" type="xs:string" />
+                                    <xs:attribute name="A1_VF_F" type="xs:string" />
+                                    <xs:attribute name="VF_F1N" type="xs:string" />
+                                    <xs:attribute name="VF_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_VF_F" type="xs:string" />
+                                    <xs:attribute name="VF_F2N" type="xs:string" />
+                                    <xs:attribute name="VF_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_VF_F" type="xs:string" />
+                                    <xs:attribute name="VF_F3N" type="xs:string" />
+                                    <xs:attribute name="VF_F3B" type="xs:string" />
+                                    <xs:attribute name="P_11" type="xs:string" />
+                                    <xs:attribute name="P_00" type="xs:string" />
+                                    <xs:attribute name="T_D" type="xs:string" />
+                                    <xs:attribute name="V_D" type="xs:string" />
+                                    <xs:attribute name="A1_P11_F" type="xs:string" />
+                                    <xs:attribute name="P11_F1N" type="xs:string" />
+                                    <xs:attribute name="P11_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_P11_F" type="xs:string" />
+                                    <xs:attribute name="P11_F2N" type="xs:string" />
+                                    <xs:attribute name="P11_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_P11_F" type="xs:string" />
+                                    <xs:attribute name="P11_F3N" type="xs:string" />
+                                    <xs:attribute name="P11_F3B" type="xs:string" />
+                                    <xs:attribute name="A1_P00_F" type="xs:string" />
+                                    <xs:attribute name="P00_F1N" type="xs:string" />
+                                    <xs:attribute name="P00_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_P00_F" type="xs:string" />
+                                    <xs:attribute name="P00_F2N" type="xs:string" />
+                                    <xs:attribute name="P00_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_P00_F" type="xs:string" />
+                                    <xs:attribute name="P00_F3N" type="xs:string" />
+                                    <xs:attribute name="P00_F3B" type="xs:string" />
+                                    <xs:attribute name="A1_TD_F" type="xs:string" />
+                                    <xs:attribute name="TD_F1N" type="xs:string" />
+                                    <xs:attribute name="TD_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_TD_F" type="xs:string" />
+                                    <xs:attribute name="TD_F2N" type="xs:string" />
+                                    <xs:attribute name="TD_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_TD_F" type="xs:string" />
+                                    <xs:attribute name="TD_F3N" type="xs:string" />
+                                    <xs:attribute name="TD_F3B" type="xs:string" />
+                                    <xs:attribute name="A1_VD_F" type="xs:string" />
+                                    <xs:attribute name="VD_F1N" type="xs:string" />
+                                    <xs:attribute name="VD_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_VD_F" type="xs:string" />
+                                    <xs:attribute name="VD_F2N" type="xs:string" />
+                                    <xs:attribute name="VD_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_VD_F" type="xs:string" />
+                                    <xs:attribute name="VD_F3N" type="xs:string" />
+                                    <xs:attribute name="VD_F3B" type="xs:string" />
+                                    <xs:attribute name="TYPE" type="xs:string" />
+                                    <xs:attribute name="ELEM_DIAGN" type="xs:string" />
+                                    <xs:attribute name="P_DIAGN_EL" type="xs:string" />
+                                    <xs:attribute name="A1_P_EL_F" type="xs:string" />
+                                    <xs:attribute name="P_EL_F1N" type="xs:string" />
+                                    <xs:attribute name="P_EL_F1B" type="xs:string" />
+                                    <xs:attribute name="A2_P_EL_F" type="xs:string" />
+                                    <xs:attribute name="P_EL_F2N" type="xs:string" />
+                                    <xs:attribute name="P_EL_F2B" type="xs:string" />
+                                    <xs:attribute name="A3_P_EL_F" type="xs:string" />
+                                    <xs:attribute name="P_EL_F3N" type="xs:string" />
+                                    <xs:attribute name="P_EL_F3B" type="xs:string" />
+                                    <xs:attribute name="SOVM" type="xs:string" />
+                                    <xs:attribute name="SOVM0" type="xs:string" />
+                                    <xs:attribute name="SOVM1" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:string" />
+                        <xs:attribute name="TypeID" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ID" type="xs:string" />
+                  <xs:attribute name="TypeID" type="xs:string" />
+                  <xs:attribute name="StartPointX" type="xs:string" />
+                  <xs:attribute name="StartPointY" type="xs:string" />
+                  <xs:attribute name="OffsetX" type="xs:string" />
+                  <xs:attribute name="OffsetY" type="xs:string" />
+                  <xs:attribute name="NextID" type="xs:string" />
+                  <xs:attribute name="PriorID" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ANCESTORLIST" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ANCS" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="IdBlock" type="xs:string" />
+                  <xs:attribute name="IdShapeAncestor" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ALTERNATELIST" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ALT" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ITEM" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="ID" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ID" type="xs:string" />
+                  <xs:attribute name="Num" type="xs:string" />
+                  <xs:attribute name="NodeStartID" type="xs:string" />
+                  <xs:attribute name="NodeEndID" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OGRSOVMLIST" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OGR" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="Row" type="xs:integer" />
+                  <xs:attribute name="Col" type="xs:integer" />
+                  <xs:attribute name="Value" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TYPEPARAM" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="Value" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TYPEDECISION" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Params" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="V" type="xs:string" />
+                  <xs:attribute name="T" type="xs:string" />
+                  <xs:attribute name="VD" type="xs:string" />
+                  <xs:attribute name="TD" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Type" type="xs:string" />
+            <xs:attribute name="Sovm" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ROOT" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
