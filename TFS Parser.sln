@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFS Parser", "TFS Parser\TFS Parser.csproj", "{AD1C518E-D43E-43CF-AEFF-82F75E85BA16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFS_Parser", "TFS_Parser\TFS_Parser.csproj", "{AD1C518E-D43E-43CF-AEFF-82F75E85BA16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
