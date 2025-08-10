@@ -56,21 +56,14 @@ namespace TFS_Parser
             ROOT data = (ROOT)xs_1.Deserialize(xr);
             
             var main = data.MAINLIST;
-            var k = 0;
-            var temp2 = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>();
-            var temp1 = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>();
-            
-            //tfes[0].PARAMS = temp2;
-            //tfes[3].PARAMS = temp1;
-
-            temp1 = main[0].TFE[0].PARAMS;
-            temp2 = main[1].TFE[0].PARAMS;
-            
-            
-            main[0].TFE[0].PARAMS = temp2;
-            main[1].TFE[0].PARAMS = temp1;
             
             //todo попробовать поменять раб операции местами и выгрузить в файл -> новая TFS
+            var temp2 = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>();
+            var temp1 = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>();
+            main[0].TFE[0].PARAMS = temp2;
+            main[1].TFE[0].PARAMS = temp1;
+            temp1 = main[0].TFE[0].PARAMS;
+            temp2 = main[1].TFE[0].PARAMS;
 
             foreach (var tfs in main)
             {
@@ -86,12 +79,31 @@ namespace TFS_Parser
                         default:
                             continue;
                     }*/
-
-
                 }
             }
             
-            
+            //create new xml
+            var test_tfs = new List<ROOTMAINLISTTFS>();
+            var main_1 = new ROOTMAINLISTTFS()
+            {
+                ID = "1",
+                StartPointX = main[0].StartPointX,
+                StartPointY = main[0].StartPointY,
+                OffsetX = main[0].OffsetX,
+                OffsetY = main[0].OffsetY,
+                NextID = main[1].ID,
+                PriorID = main[0].PriorID,
+                TypeID = main[0].TypeID,
+                TFE = new List<ROOTMAINLISTTFSTFE>()
+                {
+                    new ROOTMAINLISTTFSTFE()
+                    {
+                        ID = "1",
+                        TypeID = "1",
+                        PARAMS = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>()
+                    }
+                }
+            };
 
             XmlWriterSettings settingsWriter = new XmlWriterSettings();
             settingsWriter.Indent = true;
