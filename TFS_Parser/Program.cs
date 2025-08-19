@@ -19,14 +19,6 @@ namespace TFS_Parser
         private static readonly string path_xsd = "C:\\Users\\QW\\Desktop\\ДИПЛОМ\\TFS_Parser\\TFS_Parser\\";
         private static readonly string path_files = "C:\\Users\\QW\\Desktop\\ДИПЛОМ\\TFS_Parser\\TFS_Parser\\Files\\";
         
-        //known issues:
-        // avoid [][] arrays in ROOT.cs, replace to [] or list
-        //.net5 platform error - use .net 3.1 instead
-        //tags <OGRSOVMLIST /> и <ANCESTORLIST /> генерятся в начале, а не в нужных местах (fixed)
-        // <?xml version="1.0" encoding="windows-1251" standalone="no" ?> (fixed)
-        //todo - сохранять xml в папку с проектом каталог output
-        //динамическая генерация схемы классов из любого xml файла - нужно только если xml часто меняется.
-        //тут схема полная, но нужно добавить максимально значений чтобы и схема была полной
         public static async Task Main(string[] args)
         {
             int i = 1;
@@ -37,7 +29,7 @@ namespace TFS_Parser
             var xsd = path_xsd + "3_1.xsd";
             //1. test //var fileName = path + "3_begining.xml";
             //2. test //var fileName = path + "3_1.xml";
-            var fileName = path_files + "5tfe_new_ogr.xml";
+            var fileName = path_files + "test_geniat_zad.xml";
 
             StringReader sr = new StringReader(File.ReadAllText(xsd));
             XmlSchema sch = XmlSchema.Read(sr,null);
@@ -55,22 +47,25 @@ namespace TFS_Parser
             XmlSerializer xs_1 = new XmlSerializer(typeof(ROOT));
             ROOT data = (ROOT)xs_1.Deserialize(xr);
             
+            await SaveToDB(data);
+            
             var main = data.MAINLIST;
             
             //todo попробовать поменять раб операции местами и выгрузить в файл -> новая TFS
-            var temp2 = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>();
+            //it works
+            /*var temp2 = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>();
             var temp1 = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>();
             main[0].TFE[0].PARAMS = temp2;
             main[1].TFE[0].PARAMS = temp1;
             temp1 = main[0].TFE[0].PARAMS;
-            temp2 = main[1].TFE[0].PARAMS;
+            temp2 = main[1].TFE[0].PARAMS;*/
 
-            foreach (var tfs in main)
+           /* foreach (var tfs in main)
             {
                 var tfes = tfs.TFE;
                 foreach (var tfe in tfes)
                 {
-                    /*int.TryParse(tfe.TypeID, out int c);
+                    int.TryParse(tfe.TypeID, out int c);
                     switch ((TFE_Type)c)
                     {
                         case TFE_Type.RAB_2par_OR:
@@ -78,10 +73,10 @@ namespace TFS_Parser
                             break;
                         default:
                             continue;
-                    }*/
+                    
                 }
             }
-            
+            }
             //create new xml
             var test_tfs = new List<ROOTMAINLISTTFS>();
             var main_1 = new ROOTMAINLISTTFS()
@@ -103,7 +98,7 @@ namespace TFS_Parser
                         PARAMS = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>()
                     }
                 }
-            };
+            };*/
 
             XmlWriterSettings settingsWriter = new XmlWriterSettings();
             settingsWriter.Indent = true;
@@ -125,7 +120,6 @@ namespace TFS_Parser
             
             //xs.Serialize(writer,data);
 
-            //await SaveToDB(data);
 
             Console.WriteLine();
             
@@ -137,7 +131,7 @@ namespace TFS_Parser
             {
                 try
                 {
-                    var id = 1;
+                    var id = 2;
                     var checkIfExist = context.TFSes.AnyAsync(x => x.ID == id).Result;
 
                     if (checkIfExist)
@@ -146,7 +140,7 @@ namespace TFS_Parser
                         
                         var entity = new TFS()
                         {
-                            ID = 1,
+                            ID = id,
                             MAINLIST = data.MAINLIST,
                             TYPEPARAM = data.TYPEPARAM,
                             OGRSOVMLIST = data.OGRSOVMLIST,
@@ -169,7 +163,7 @@ namespace TFS_Parser
                     {
                         var entity = new TFS()
                         {
-                            ID = 1,
+                            ID = id,
                             MAINLIST = data.MAINLIST,
                             TYPEPARAM = data.TYPEPARAM,
                             OGRSOVMLIST = data.OGRSOVMLIST,
