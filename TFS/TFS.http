@@ -1,0 +1,6 @@
+@TFS_HostAddress = http://localhost:5048
+
+GET {{TFS_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
