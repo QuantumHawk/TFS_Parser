@@ -1,3 +1,4 @@
+using System.Globalization;
 using Npgsql;
 using Pgvector;
 using OpenAI;
@@ -7,6 +8,9 @@ namespace TFS.Services;
 
 public class Calculate
 {
+    private const string getPrecedentsParamAlt = @"SELECT ""ID"", ""B"", ""V"", ""T"" FROM ""PrecedentsParamAlt""";
+    private const string getParamAlt = @"SELECT ""ID"", ""B"", ""V"", ""T"" FROM ""ROOTMAINLISTTFSTFEPARAMSParamAlt""";
+    
     public async Task Test()
     {
  
@@ -101,7 +105,8 @@ public class Calculate
         }
     }
 
-    public async Task Test2()
+
+    public async Task<Dictionary<Guid,List<float>>> Test2(string sql)
     {
         // 1) DataSource с pgvector-хэндлером
         var cs = "Host=localhost;Database=postgres;Username=postgres;Password=admin;";
@@ -114,43 +119,22 @@ public class Calculate
         {
             await using (var conn3 = dataSource.OpenConnection())
             {
-                const string sql = @"SELECT ""ID"", ""B"", ""V"", ""T"" FROM ""PrecedentsParamAlt""";
+
                 await using var cmd1 = new NpgsqlCommand(sql, conn3);
                 await using var reader = await cmd1.ExecuteReaderAsync();
                 while (await reader.ReadAsync())
                 {
-                    var id = reader.GetGuid(0);
+                    var id = reader.GetString(0);
                     var b = reader.GetString(1);
                     var v = reader.GetString(2);
                     var t = reader.GetString(3);
-                        
+
                     var list = new List<float>();
-                    list.Add(float.Parse(v));
-                    list.Add(float.Parse(t));
-                    list.Add(float.Parse(b));
-                        
-                    TFEs.Add(id, list);
-                }
-            }
-            
-            await using (var conn = dataSource.OpenConnection())
-            {
-                const string sql = @"SELECT ""ID"", ""B"", ""V"", ""T"" FROM ""ROOTMAINLISTTFSTFEPARAMSParamAlt""";
-                await using var cmd1 = new NpgsqlCommand(sql, conn);
-                await using var reader = await cmd1.ExecuteReaderAsync();
-                while (await reader.ReadAsync())
-                {
-                    var id = reader.GetGuid(0);
-                    var b = reader.GetString(1);
-                    var v = reader.GetString(2);
-                    var t = reader.GetString(3);
-                        
-                    var list = new List<float>();
-                    list.Add(float.Parse(v));
-                    list.Add(float.Parse(t));
-                    list.Add(float.Parse(b));
-                        
-                    TFEs.Add(id, list);
+                    list.Add(float.Parse(v, CultureInfo.InvariantCulture));
+                    list.Add(float.Parse(t, CultureInfo.InvariantCulture));
+                    list.Add(float.Parse(b, CultureInfo.InvariantCulture));
+
+                    TFEs.Add(Guid.Parse(id), list);
                 }
             }
         }
@@ -158,6 +142,8 @@ public class Calculate
         {
             Console.WriteLine(ex.Message);
         }
+        
+        return TFEs;
     }
 
     public async Task Search()
@@ -191,6 +177,7 @@ public class Calculate
             await using var searchCmd = new NpgsqlCommand(sql, conn);
             searchCmd.Parameters.AddWithValue("q", q);
 
+            var result = new Dictionary<Guid,List<float>>();
             using var r = searchCmd.ExecuteReader();
             while (await r.ReadAsync())
             {
@@ -202,6 +189,11 @@ public class Calculate
 
                 Console.WriteLine($"{id} | {grp} | {role} | dist={dist:0.000}");
             }
+            
+            var dicts = await Task.WhenAll(
+                Test2(getPrecedentsParamAlt),
+                Test2(getParamAlt)
+            );
         }
         catch (Exception ex)
         {

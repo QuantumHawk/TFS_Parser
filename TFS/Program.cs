@@ -44,7 +44,7 @@ namespace TFS_Parser
 
                 //c.Test();
                 //c.Search();
-                c.Test2();
+                c.Test();
         }
     }
 }
