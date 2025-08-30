@@ -1,3 +1,4 @@
+/*
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,3 +22,29 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+*/
+using System;
+using System.Collections.Generic;
+using System.Xml;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+using TFS.Services;
+
+namespace TFS_Parser
+{
+    static class Program
+    {
+        public static async Task Main(string[] args)
+        {
+            var c = new Calculate();
+
+                //c.Test();
+                //c.Search();
+                c.Test2();
+        }
+    }
+}

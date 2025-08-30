@@ -133,7 +133,52 @@ namespace TFS_Parser
                 {
                     var id = 2;
                     var checkIfExist = context.TFSes.AnyAsync(x => x.ID == id).Result;
+                    
+                    var t = context.TFSes.FirstOrDefault(x => x.ID == 1);
 
+                    List<TFS> tfs;
+
+                    tfs = context.TFSes
+                        .Include(x => x.ALTERNATELIST)
+                        .ThenInclude(x => x.ITEM)
+                        .Include(x => x.TYPEDECISION)
+                        .ThenInclude(x => x.Params)
+                        .Include(x => x.MAINLIST)
+                        .ThenInclude(x => x.TFE)
+                        .ThenInclude(x => x.PARAMS)
+                        .Select(data => new TFS()
+                        {
+                            ID = data.ID,
+                            MAINLIST = data.MAINLIST,
+                            TYPEPARAM = data.TYPEPARAM,
+                            OGRSOVMLIST = data.OGRSOVMLIST,
+                            ANCESTORLIST = data.ANCESTORLIST,
+                            TYPEDECISION = data.TYPEDECISION,
+                            ALTERNATELIST = data.ALTERNATELIST
+                            
+                        }).ToList();
+
+                    //code for create new file from old master         
+                    XmlWriterSettings sw = new XmlWriterSettings();
+                    sw.Indent = true;
+                    sw.IndentChars = ("\t");
+                    sw.OmitXmlDeclaration = true;
+                    sw.Encoding = Encoding.GetEncoding("windows-1251");;
+
+                    XmlWriter w = XmlWriter.Create($"Root6.xml", sw);
+                    XmlSerializer s = new XmlSerializer(typeof(ROOT));
+                    var root = new ROOT()
+                    {
+                        MAINLIST = tfs[0].MAINLIST,
+                        TYPEPARAM = tfs[0].TYPEPARAM,
+                        OGRSOVMLIST = tfs[0].OGRSOVMLIST,
+                        ANCESTORLIST = tfs[0].ANCESTORLIST,
+                        TYPEDECISION = tfs[0].TYPEDECISION,
+                        ALTERNATELIST = tfs[0].ALTERNATELIST
+
+                    };
+                    s.Serialize(w, root);
+                    
                     if (checkIfExist)
                     {
                         var entityToUpdate = context.TFSes.FirstAsync(x => x.ID == id).Result;

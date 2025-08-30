@@ -52,6 +52,8 @@ using Microsoft.EntityFrameworkCore;
         [System.Diagnostics.DebuggerStepThroughAttribute()]
         [System.ComponentModel.DesignerCategoryAttribute("code")]
         [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        [Keyless]
+        [NotMapped]
         public class ROOTANCESTORLISTANCS
         {
             /// <remarks/>
@@ -80,6 +82,8 @@ using Microsoft.EntityFrameworkCore;
         [System.Diagnostics.DebuggerStepThroughAttribute()]
         [System.ComponentModel.DesignerCategoryAttribute("code")]
         [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        [Keyless]
+        [NotMapped]
         public class ROOTOGRSOVMLISTOGR
         {
             /// <remarks/>
@@ -116,7 +120,7 @@ using Microsoft.EntityFrameworkCore;
         public List<ROOTMAINLISTTFSTFE> TFE { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         [Key]
         public string ID  {get; set; }
 
@@ -165,7 +169,8 @@ using Microsoft.EntityFrameworkCore;
         public List<ROOTMAINLISTTFSTFEPARAMSParamAlt> PARAMS { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        //[System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         [Key]
         public string ID { get; set; }
 
@@ -180,11 +185,16 @@ using Microsoft.EntityFrameworkCore;
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [Keyless]
-    [NotMapped]
+    //[Keyless]
+    //[NotMapped]
     public partial class ROOTMAINLISTTFSTFEPARAMSParamAlt
     {
         #region fields
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [Key]
+        public string ID { get; set; }
         
         private string nUMBERField;
 
@@ -1526,7 +1536,8 @@ using Microsoft.EntityFrameworkCore;
         public List<ROOTALTERNATELISTALTITEM> ITEM { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        //[System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         [Key]
         public string ID { get; set; }
 
@@ -1567,7 +1578,8 @@ using Microsoft.EntityFrameworkCore;
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        //[System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         [Key]
         public string ID { get; set; }
         
@@ -1587,7 +1599,8 @@ using Microsoft.EntityFrameworkCore;
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        //System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         [Key]
         public string ID { get; set; }
         
@@ -1614,7 +1627,8 @@ using Microsoft.EntityFrameworkCore;
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        //[System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         [Key]
         public string ID { get; set; }
         
