@@ -43,8 +43,7 @@ namespace TFS_Parser
             var c = new Calculate();
 
                 //c.Test();
-                //c.Search();
-                c.Test();
+                c.Search();
         }
     }
 }

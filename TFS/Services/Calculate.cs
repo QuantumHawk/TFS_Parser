@@ -105,24 +105,23 @@ public class Calculate
         }
     }
 
-
+// переделать в джоин 2 таблиц и вытащить значения одним запросом
     public async Task<Dictionary<Guid,List<float>>> Test2(string sql)
     {
         // 1) DataSource с pgvector-хэндлером
         var cs = "Host=localhost;Database=postgres;Username=postgres;Password=admin;";
         var dsb = new NpgsqlDataSourceBuilder(cs);
-        dsb.UseVector();
         await using var dataSource = dsb.Build();
         
         var TFEs = new Dictionary<Guid,List<float>>();
         try
         {
-            await using (var conn3 = dataSource.OpenConnection())
+            await using (var conn = dataSource.OpenConnection())
             {
 
-                await using var cmd1 = new NpgsqlCommand(sql, conn3);
-                await using var reader = await cmd1.ExecuteReaderAsync();
-                while (await reader.ReadAsync())
+                await using var cmd = new NpgsqlCommand(sql, conn);
+                using var reader =  cmd.ExecuteReader();
+                while ( reader.Read())
                 {
                     var id = reader.GetString(0);
                     var b = reader.GetString(1);
@@ -145,7 +144,7 @@ public class Calculate
         
         return TFEs;
     }
-
+    
     public async Task Search()
     {
         // 1) DataSource с pgvector-хэндлером
@@ -169,15 +168,20 @@ public class Calculate
                    grp,
                    COALESCE(role, '') AS role,
                    full_text,
-                   embedding <-> @q AS distance
+                   embedding <-> @q AS distance,
+                   id_tfc
             FROM domain_objects
             ORDER BY distance
-            LIMIT 5;";
+            LIMIT 20;";
 
             await using var searchCmd = new NpgsqlCommand(sql, conn);
             searchCmd.Parameters.AddWithValue("q", q);
 
-            var result = new Dictionary<Guid,List<float>>();
+            var result = new Dictionary<Guid,float>();
+            
+            var precedents = await Test2(getPrecedentsParamAlt);
+            var original = await Test2(getParamAlt); 
+            
             using var r = searchCmd.ExecuteReader();
             while (await r.ReadAsync())
             {
@@ -186,14 +190,31 @@ public class Calculate
                 var role = r.GetString(2);   
                 var text = r.GetString(3);
                 var dist = r.GetFloat(4);
+                var id_tfc = r.GetGuid(5);
 
-                Console.WriteLine($"{id} | {grp} | {role} | dist={dist:0.000}");
+                Console.WriteLine($"{id_tfc} | {grp} | {role} | {text} | dist={dist:0.000}");
+                
+                precedents.TryGetValue(id_tfc, out var pr);
+                original.TryGetValue(id_tfc, out var or);
+
+                //сравнить BTV между собой и выбрать лучшую ТФС из прецедентов
+                if (pr is null || or is null)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+                    //result.Add(id,dist);
             }
+
             
-            var dicts = await Task.WhenAll(
-                Test2(getPrecedentsParamAlt),
-                Test2(getParamAlt)
-            );
+             foreach (var item in original)
+             {
+                 result.TryGetValue(item.Key, out var dist);
+                 
+             }
         }
         catch (Exception ex)
         {
