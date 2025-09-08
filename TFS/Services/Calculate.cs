@@ -181,6 +181,13 @@ public class Calculate
             
             var precedents = await Test2(getPrecedentsParamAlt);
             var original = await Test2(getParamAlt); 
+            var compareID = Guid.NewGuid();
+            var comparedTFE = "";
+            var compareB = 0.0;
+            var compareT = 0.0;
+            var compareV = 0.0;
+            var empty = true;
+            var readyToCompare = false;
             
             using var r = searchCmd.ExecuteReader();
             while (await r.ReadAsync())
@@ -192,15 +199,61 @@ public class Calculate
                 var dist = r.GetFloat(4);
                 var id_tfc = r.GetGuid(5);
 
-                Console.WriteLine($"{id_tfc} | {grp} | {role} | {text} | dist={dist:0.000}");
+                var t = $"{id_tfc} | {grp} | {role} | {text} | dist={dist:0.000}";
+                Console.WriteLine(t);
                 
                 precedents.TryGetValue(id_tfc, out var pr);
                 original.TryGetValue(id_tfc, out var or);
-
+                
                 //сравнить BTV между собой и выбрать лучшую ТФС из прецедентов
-                if (pr is null || or is null)
+                if (pr is not null)
                 {
-                    
+                    if (empty)
+                    {
+                        compareID = id_tfc;
+                        comparedTFE = t;
+                        compareV = pr[0];
+                        compareT = pr[1];
+                        compareB = pr[2];   
+                        empty =  false;
+                        readyToCompare = true;
+                    }
+                    if(readyToCompare)
+                    {
+                        if (compareV > pr[0] && compareT > pr[1] && compareB < pr[2])
+                        {
+                            compareID = id_tfc;
+                            comparedTFE = t;
+                            compareV = pr[0];
+                            compareT = pr[1];
+                            compareB = pr[2]; 
+                        }
+                    } 
+                }
+
+                if (or is not null)
+                {
+                    if (empty)
+                    {
+                        compareID = id_tfc;
+                        comparedTFE = t;
+                        compareV = or[0];
+                        compareT = or[1];
+                        compareB = or[2];
+                        empty =  false;
+                        readyToCompare = true;
+                    }
+                    if(readyToCompare)
+                    {
+                        if (compareV < or[0] && compareT < or[1] && compareB > or[2])
+                        {
+                            compareID = id_tfc;
+                            comparedTFE = t;
+                            compareV = or[0];
+                            compareT = or[1];
+                            compareB = or[2]; 
+                        }
+                    } 
                 }
                 else
                 {
@@ -208,13 +261,7 @@ public class Calculate
                 }
                     //result.Add(id,dist);
             }
-
-            
-             foreach (var item in original)
-             {
-                 result.TryGetValue(item.Key, out var dist);
-                 
-             }
+        
         }
         catch (Exception ex)
         {
