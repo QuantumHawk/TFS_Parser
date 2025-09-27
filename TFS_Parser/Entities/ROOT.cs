@@ -26,165 +26,172 @@ using Microsoft.EntityFrameworkCore;
 
     /// <remarks/>
  
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    [XmlType(AnonymousType = true)]
+    [XmlRoot(Namespace = "", IsNullable = false)]
     public partial class ROOT
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("TFS", typeof(ROOTMAINLISTTFS),
+        [XmlArray(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlArrayItem("TFS", typeof(ROOTMAINLISTTFS),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<ROOTMAINLISTTFS> MAINLIST { get; set; }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("ANCS", typeof(ROOTANCESTORLISTANCS),
+        [XmlArray(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlArrayItem("ANCS", typeof(ROOTANCESTORLISTANCS),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<ROOTANCESTORLISTANCS> ANCESTORLIST{ get; set; }
 
         /// <remarks/>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-        [System.SerializableAttribute()]
-        [System.Diagnostics.DebuggerStepThroughAttribute()]
+        [Serializable]
+        [System.Diagnostics.DebuggerStepThroughAttribute]
         [System.ComponentModel.DesignerCategoryAttribute("code")]
-        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-        [Keyless]
-        [NotMapped]
+        [XmlType(AnonymousType = true)]
         public class ROOTANCESTORLISTANCS
         {
             /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
+            //[System.Xml.Serialization.XmlAttributeAttribute()]
+            [XmlIgnore]
+            [Key]
+            public string ID { get; set; }
+            
+            /// <remarks/>
+            [XmlAttribute]
             public string IdBlock { get; set; }
             /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
+            [XmlAttribute]
             public string IdShapeAncestor { get; set; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("ALT", typeof(ROOTALTERNATELISTALT),
+        [XmlArray(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlArrayItem("ALT", typeof(ROOTALTERNATELISTALT),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<ROOTALTERNATELISTALT> ALTERNATELIST{ get; set; }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("OGR", typeof(ROOTOGRSOVMLISTOGR),
+        [XmlArray(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlArrayItem("OGR", typeof(ROOTOGRSOVMLISTOGR),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<ROOTOGRSOVMLISTOGR> OGRSOVMLIST{ get; set; }
 
         /// <remarks/>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-        [System.SerializableAttribute()]
-        [System.Diagnostics.DebuggerStepThroughAttribute()]
+        [Serializable]
+        [System.Diagnostics.DebuggerStepThroughAttribute]
         [System.ComponentModel.DesignerCategoryAttribute("code")]
-        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-        [Keyless]
-        [NotMapped]
+        [XmlType(AnonymousType = true)]
         public class ROOTOGRSOVMLISTOGR
         {
             /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
+            //[System.Xml.Serialization.XmlAttributeAttribute()]
+            [XmlIgnore]
+            [Key]
+            public string ID { get; set; }
+            
+            /// <remarks/>
+            [XmlAttribute]
             public string Row { get; set; }
             /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
+            [XmlAttribute]
             public string Col { get; set; }
             /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
+            [XmlAttribute]
             public string Value { get; set; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TYPEPARAM", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("TYPEPARAM", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTTYPEPARAM> TYPEPARAM { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TYPEDECISION", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("TYPEDECISION", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTTYPEDECISION> TYPEDECISION { get; set; }
     }
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlType(AnonymousType = true)]
     public partial class ROOTMAINLISTTFS
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TFE", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("TFE", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTMAINLISTTFSTFE> TFE { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnore()]
+        [XmlAttribute]
         [Key]
         public string ID  {get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TypeID { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string StartPointX { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string StartPointY { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string OffsetX { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string OffsetY { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string NextID { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string PriorID { get; set; }
     }
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlType(AnonymousType = true)]
     public partial class ROOTMAINLISTTFSTFE
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("ParamAlt", typeof(ROOTMAINLISTTFSTFEPARAMSParamAlt),
+        [XmlArray(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlArrayItem("ParamAlt", typeof(ROOTMAINLISTTFSTFEPARAMSParamAlt),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<ROOTMAINLISTTFSTFEPARAMSParamAlt> PARAMS { get; set; }
 
         /// <remarks/>
-        //[System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.Xml.Serialization.XmlIgnore()]
+        [XmlAttribute]
         [Key]
         public string ID { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TypeID { get; set; }
     }
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlType(AnonymousType = true)]
     //[Keyless]
     //[NotMapped]
     public partial class ROOTMAINLISTTFSTFEPARAMSParamAlt
@@ -192,8 +199,8 @@ using Microsoft.EntityFrameworkCore;
         #region fields
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
         [Key]
+        [XmlIgnore]
         public string ID { get; set; }
         
         private string nUMBERField;
@@ -465,1059 +472,1059 @@ using Microsoft.EntityFrameworkCore;
         #region properties
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string NUMBER
         {
-            get { return this.nUMBERField; }
-            set { this.nUMBERField = value; }
+            get { return nUMBERField; }
+            set { nUMBERField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string PRED_ISTOR
         {
-            get { return this.pRED_ISTORField; }
-            set { this.pRED_ISTORField = value; }
+            get { return pRED_ISTORField; }
+            set { pRED_ISTORField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string SOSTAV
         {
-            get { return this.sOSTAVField; }
-            set { this.sOSTAVField = value; }
+            get { return sOSTAVField; }
+            set { sOSTAVField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string NAME
         {
-            get { return this.nAMEField; }
-            set { this.nAMEField = value; }
+            get { return nAMEField; }
+            set { nAMEField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string FUNCTION
         {
-            get { return this.fUNCTIONField; }
-            set { this.fUNCTIONField = value; }
+            get { return fUNCTIONField; }
+            set { fUNCTIONField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string ELEMENT
         {
-            get { return this.eLEMENTField; }
-            set { this.eLEMENTField = value; }
+            get { return eLEMENTField; }
+            set { eLEMENTField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string PREDICAT
         {
-            get { return this.pREDICATField; }
-            set { this.pREDICATField = value; }
+            get { return pREDICATField; }
+            set { pREDICATField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string B
         {
-            get { return this.bField; }
-            set { this.bField = value; }
+            get { return bField; }
+            set { bField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T
         {
-            get { return this.tField; }
-            set { this.tField = value; }
+            get { return tField; }
+            set { tField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V
         {
-            get { return this.vField; }
-            set { this.vField = value; }
+            get { return vField; }
+            set { vField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_B_F
         {
-            get { return this.a1_B_FField; }
-            set { this.a1_B_FField = value; }
+            get { return a1_B_FField; }
+            set { a1_B_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string B_F1N
         {
-            get { return this.b_F1NField; }
-            set { this.b_F1NField = value; }
+            get { return b_F1NField; }
+            set { b_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string B_F1B
         {
-            get { return this.b_F1BField; }
-            set { this.b_F1BField = value; }
+            get { return b_F1BField; }
+            set { b_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_B_F
         {
-            get { return this.a2_B_FField; }
-            set { this.a2_B_FField = value; }
+            get { return a2_B_FField; }
+            set { a2_B_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string B_F2N
         {
-            get { return this.b_F2NField; }
-            set { this.b_F2NField = value; }
+            get { return b_F2NField; }
+            set { b_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string B_F2B
         {
-            get { return this.b_F2BField; }
-            set { this.b_F2BField = value; }
+            get { return b_F2BField; }
+            set { b_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_B_F
         {
-            get { return this.a3_B_FField; }
-            set { this.a3_B_FField = value; }
+            get { return a3_B_FField; }
+            set { a3_B_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string B_F3N
         {
-            get { return this.b_F3NField; }
-            set { this.b_F3NField = value; }
+            get { return b_F3NField; }
+            set { b_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string B_F3B
         {
-            get { return this.b_F3BField; }
-            set { this.b_F3BField = value; }
+            get { return b_F3BField; }
+            set { b_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_T_F
         {
-            get { return this.a1_T_FField; }
-            set { this.a1_T_FField = value; }
+            get { return a1_T_FField; }
+            set { a1_T_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T_F1N
         {
-            get { return this.t_F1NField; }
-            set { this.t_F1NField = value; }
+            get { return t_F1NField; }
+            set { t_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T_F1B
         {
-            get { return this.t_F1BField; }
-            set { this.t_F1BField = value; }
+            get { return t_F1BField; }
+            set { t_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_T_F
         {
-            get { return this.a2_T_FField; }
-            set { this.a2_T_FField = value; }
+            get { return a2_T_FField; }
+            set { a2_T_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T_F2N
         {
-            get { return this.t_F2NField; }
-            set { this.t_F2NField = value; }
+            get { return t_F2NField; }
+            set { t_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T_F2B
         {
-            get { return this.t_F2BField; }
-            set { this.t_F2BField = value; }
+            get { return t_F2BField; }
+            set { t_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_T_F
         {
-            get { return this.a3_T_FField; }
-            set { this.a3_T_FField = value; }
+            get { return a3_T_FField; }
+            set { a3_T_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T_F3N
         {
-            get { return this.t_F3NField; }
-            set { this.t_F3NField = value; }
+            get { return t_F3NField; }
+            set { t_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T_F3B
         {
-            get { return this.t_F3BField; }
-            set { this.t_F3BField = value; }
+            get { return t_F3BField; }
+            set { t_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_V_F
         {
-            get { return this.a1_V_FField; }
-            set { this.a1_V_FField = value; }
+            get { return a1_V_FField; }
+            set { a1_V_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V_F1N
         {
-            get { return this.v_F1NField; }
-            set { this.v_F1NField = value; }
+            get { return v_F1NField; }
+            set { v_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V_F1B
         {
-            get { return this.v_F1BField; }
-            set { this.v_F1BField = value; }
+            get { return v_F1BField; }
+            set { v_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_V_F
         {
-            get { return this.a2_V_FField; }
-            set { this.a2_V_FField = value; }
+            get { return a2_V_FField; }
+            set { a2_V_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V_F2N
         {
-            get { return this.v_F2NField; }
-            set { this.v_F2NField = value; }
+            get { return v_F2NField; }
+            set { v_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V_F2B
         {
-            get { return this.v_F2BField; }
-            set { this.v_F2BField = value; }
+            get { return v_F2BField; }
+            set { v_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_V_F
         {
-            get { return this.a3_V_FField; }
-            set { this.a3_V_FField = value; }
+            get { return a3_V_FField; }
+            set { a3_V_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V_F3N
         {
-            get { return this.v_F3NField; }
-            set { this.v_F3NField = value; }
+            get { return v_F3NField; }
+            set { v_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V_F3B
         {
-            get { return this.v_F3BField; }
-            set { this.v_F3BField = value; }
+            get { return v_F3BField; }
+            set { v_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K_11
         {
-            get { return this.k_11Field; }
-            set { this.k_11Field = value; }
+            get { return k_11Field; }
+            set { k_11Field = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K_00
         {
-            get { return this.k_00Field; }
-            set { this.k_00Field = value; }
+            get { return k_00Field; }
+            set { k_00Field = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T_F
         {
-            get { return this.t_FField; }
-            set { this.t_FField = value; }
+            get { return t_FField; }
+            set { t_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V_F
         {
-            get { return this.v_FField; }
-            set { this.v_FField = value; }
+            get { return v_FField; }
+            set { v_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_K11_F
         {
-            get { return this.a1_K11_FField; }
-            set { this.a1_K11_FField = value; }
+            get { return a1_K11_FField; }
+            set { a1_K11_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K11_F1N
         {
-            get { return this.k11_F1NField; }
-            set { this.k11_F1NField = value; }
+            get { return k11_F1NField; }
+            set { k11_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K11_F1B
         {
-            get { return this.k11_F1BField; }
-            set { this.k11_F1BField = value; }
+            get { return k11_F1BField; }
+            set { k11_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_K11_F
         {
-            get { return this.a2_K11_FField; }
-            set { this.a2_K11_FField = value; }
+            get { return a2_K11_FField; }
+            set { a2_K11_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K11_F2N
         {
-            get { return this.k11_F2NField; }
-            set { this.k11_F2NField = value; }
+            get { return k11_F2NField; }
+            set { k11_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K11_F2B
         {
-            get { return this.k11_F2BField; }
-            set { this.k11_F2BField = value; }
+            get { return k11_F2BField; }
+            set { k11_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_K11_F
         {
-            get { return this.a3_K11_FField; }
-            set { this.a3_K11_FField = value; }
+            get { return a3_K11_FField; }
+            set { a3_K11_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K11_F3N
         {
-            get { return this.k11_F3NField; }
-            set { this.k11_F3NField = value; }
+            get { return k11_F3NField; }
+            set { k11_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K11_F3B
         {
-            get { return this.k11_F3BField; }
-            set { this.k11_F3BField = value; }
+            get { return k11_F3BField; }
+            set { k11_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_K00_F
         {
-            get { return this.a1_K00_FField; }
-            set { this.a1_K00_FField = value; }
+            get { return a1_K00_FField; }
+            set { a1_K00_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K00_F1N
         {
-            get { return this.k00_F1NField; }
-            set { this.k00_F1NField = value; }
+            get { return k00_F1NField; }
+            set { k00_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K00_F1B
         {
-            get { return this.k00_F1BField; }
-            set { this.k00_F1BField = value; }
+            get { return k00_F1BField; }
+            set { k00_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_K00_F
         {
-            get { return this.a2_K00_FField; }
-            set { this.a2_K00_FField = value; }
+            get { return a2_K00_FField; }
+            set { a2_K00_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K00_F2N
         {
-            get { return this.k00_F2NField; }
-            set { this.k00_F2NField = value; }
+            get { return k00_F2NField; }
+            set { k00_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K00_F2B
         {
-            get { return this.k00_F2BField; }
-            set { this.k00_F2BField = value; }
+            get { return k00_F2BField; }
+            set { k00_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_K00_F
         {
-            get { return this.a3_K00_FField; }
-            set { this.a3_K00_FField = value; }
+            get { return a3_K00_FField; }
+            set { a3_K00_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K00_F3N
         {
-            get { return this.k00_F3NField; }
-            set { this.k00_F3NField = value; }
+            get { return k00_F3NField; }
+            set { k00_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string K00_F3B
         {
-            get { return this.k00_F3BField; }
-            set { this.k00_F3BField = value; }
+            get { return k00_F3BField; }
+            set { k00_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_TF_F
         {
-            get { return this.a1_TF_FField; }
-            set { this.a1_TF_FField = value; }
+            get { return a1_TF_FField; }
+            set { a1_TF_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TF_F1N
         {
-            get { return this.tF_F1NField; }
-            set { this.tF_F1NField = value; }
+            get { return tF_F1NField; }
+            set { tF_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TF_F1B
         {
-            get { return this.tF_F1BField; }
-            set { this.tF_F1BField = value; }
+            get { return tF_F1BField; }
+            set { tF_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_TF_F
         {
-            get { return this.a2_TF_FField; }
-            set { this.a2_TF_FField = value; }
+            get { return a2_TF_FField; }
+            set { a2_TF_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TF_F2N
         {
-            get { return this.tF_F2NField; }
-            set { this.tF_F2NField = value; }
+            get { return tF_F2NField; }
+            set { tF_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TF_F2B
         {
-            get { return this.tF_F2BField; }
-            set { this.tF_F2BField = value; }
+            get { return tF_F2BField; }
+            set { tF_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_TF_F
         {
-            get { return this.a3_TF_FField; }
-            set { this.a3_TF_FField = value; }
+            get { return a3_TF_FField; }
+            set { a3_TF_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TF_F3N
         {
-            get { return this.tF_F3NField; }
-            set { this.tF_F3NField = value; }
+            get { return tF_F3NField; }
+            set { tF_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TF_F3B
         {
-            get { return this.tF_F3BField; }
-            set { this.tF_F3BField = value; }
+            get { return tF_F3BField; }
+            set { tF_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_VF_F
         {
-            get { return this.a1_VF_FField; }
-            set { this.a1_VF_FField = value; }
+            get { return a1_VF_FField; }
+            set { a1_VF_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VF_F1N
         {
-            get { return this.vF_F1NField; }
-            set { this.vF_F1NField = value; }
+            get { return vF_F1NField; }
+            set { vF_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VF_F1B
         {
-            get { return this.vF_F1BField; }
-            set { this.vF_F1BField = value; }
+            get { return vF_F1BField; }
+            set { vF_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_VF_F
         {
-            get { return this.a2_VF_FField; }
-            set { this.a2_VF_FField = value; }
+            get { return a2_VF_FField; }
+            set { a2_VF_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VF_F2N
         {
-            get { return this.vF_F2NField; }
-            set { this.vF_F2NField = value; }
+            get { return vF_F2NField; }
+            set { vF_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VF_F2B
         {
-            get { return this.vF_F2BField; }
-            set { this.vF_F2BField = value; }
+            get { return vF_F2BField; }
+            set { vF_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_VF_F
         {
-            get { return this.a3_VF_FField; }
-            set { this.a3_VF_FField = value; }
+            get { return a3_VF_FField; }
+            set { a3_VF_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VF_F3N
         {
-            get { return this.vF_F3NField; }
-            set { this.vF_F3NField = value; }
+            get { return vF_F3NField; }
+            set { vF_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VF_F3B
         {
-            get { return this.vF_F3BField; }
-            set { this.vF_F3BField = value; }
+            get { return vF_F3BField; }
+            set { vF_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P_11
         {
-            get { return this.p_11Field; }
-            set { this.p_11Field = value; }
+            get { return p_11Field; }
+            set { p_11Field = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P_00
         {
-            get { return this.p_00Field; }
-            set { this.p_00Field = value; }
+            get { return p_00Field; }
+            set { p_00Field = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T_D
         {
-            get { return this.t_DField; }
-            set { this.t_DField = value; }
+            get { return t_DField; }
+            set { t_DField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V_D
         {
-            get { return this.v_DField; }
-            set { this.v_DField = value; }
+            get { return v_DField; }
+            set { v_DField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_P11_F
         {
-            get { return this.a1_P11_FField; }
-            set { this.a1_P11_FField = value; }
+            get { return a1_P11_FField; }
+            set { a1_P11_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P11_F1N
         {
-            get { return this.p11_F1NField; }
-            set { this.p11_F1NField = value; }
+            get { return p11_F1NField; }
+            set { p11_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P11_F1B
         {
-            get { return this.p11_F1BField; }
-            set { this.p11_F1BField = value; }
+            get { return p11_F1BField; }
+            set { p11_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_P11_F
         {
-            get { return this.a2_P11_FField; }
-            set { this.a2_P11_FField = value; }
+            get { return a2_P11_FField; }
+            set { a2_P11_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P11_F2N
         {
-            get { return this.p11_F2NField; }
-            set { this.p11_F2NField = value; }
+            get { return p11_F2NField; }
+            set { p11_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P11_F2B
         {
-            get { return this.p11_F2BField; }
-            set { this.p11_F2BField = value; }
+            get { return p11_F2BField; }
+            set { p11_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_P11_F
         {
-            get { return this.a3_P11_FField; }
-            set { this.a3_P11_FField = value; }
+            get { return a3_P11_FField; }
+            set { a3_P11_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P11_F3N
         {
-            get { return this.p11_F3NField; }
-            set { this.p11_F3NField = value; }
+            get { return p11_F3NField; }
+            set { p11_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P11_F3B
         {
-            get { return this.p11_F3BField; }
-            set { this.p11_F3BField = value; }
+            get { return p11_F3BField; }
+            set { p11_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_P00_F
         {
-            get { return this.a1_P00_FField; }
-            set { this.a1_P00_FField = value; }
+            get { return a1_P00_FField; }
+            set { a1_P00_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P00_F1N
         {
-            get { return this.p00_F1NField; }
-            set { this.p00_F1NField = value; }
+            get { return p00_F1NField; }
+            set { p00_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P00_F1B
         {
-            get { return this.p00_F1BField; }
-            set { this.p00_F1BField = value; }
+            get { return p00_F1BField; }
+            set { p00_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_P00_F
         {
-            get { return this.a2_P00_FField; }
-            set { this.a2_P00_FField = value; }
+            get { return a2_P00_FField; }
+            set { a2_P00_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P00_F2N
         {
-            get { return this.p00_F2NField; }
-            set { this.p00_F2NField = value; }
+            get { return p00_F2NField; }
+            set { p00_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P00_F2B
         {
-            get { return this.p00_F2BField; }
-            set { this.p00_F2BField = value; }
+            get { return p00_F2BField; }
+            set { p00_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_P00_F
         {
-            get { return this.a3_P00_FField; }
-            set { this.a3_P00_FField = value; }
+            get { return a3_P00_FField; }
+            set { a3_P00_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P00_F3N
         {
-            get { return this.p00_F3NField; }
-            set { this.p00_F3NField = value; }
+            get { return p00_F3NField; }
+            set { p00_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P00_F3B
         {
-            get { return this.p00_F3BField; }
-            set { this.p00_F3BField = value; }
+            get { return p00_F3BField; }
+            set { p00_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_TD_F
         {
-            get { return this.a1_TD_FField; }
-            set { this.a1_TD_FField = value; }
+            get { return a1_TD_FField; }
+            set { a1_TD_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TD_F1N
         {
-            get { return this.tD_F1NField; }
-            set { this.tD_F1NField = value; }
+            get { return tD_F1NField; }
+            set { tD_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TD_F1B
         {
-            get { return this.tD_F1BField; }
-            set { this.tD_F1BField = value; }
+            get { return tD_F1BField; }
+            set { tD_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_TD_F
         {
-            get { return this.a2_TD_FField; }
-            set { this.a2_TD_FField = value; }
+            get { return a2_TD_FField; }
+            set { a2_TD_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TD_F2N
         {
-            get { return this.tD_F2NField; }
-            set { this.tD_F2NField = value; }
+            get { return tD_F2NField; }
+            set { tD_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TD_F2B
         {
-            get { return this.tD_F2BField; }
-            set { this.tD_F2BField = value; }
+            get { return tD_F2BField; }
+            set { tD_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_TD_F
         {
-            get { return this.a3_TD_FField; }
-            set { this.a3_TD_FField = value; }
+            get { return a3_TD_FField; }
+            set { a3_TD_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TD_F3N
         {
-            get { return this.tD_F3NField; }
-            set { this.tD_F3NField = value; }
+            get { return tD_F3NField; }
+            set { tD_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TD_F3B
         {
-            get { return this.tD_F3BField; }
-            set { this.tD_F3BField = value; }
+            get { return tD_F3BField; }
+            set { tD_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_VD_F
         {
-            get { return this.a1_VD_FField; }
-            set { this.a1_VD_FField = value; }
+            get { return a1_VD_FField; }
+            set { a1_VD_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VD_F1N
         {
-            get { return this.vD_F1NField; }
-            set { this.vD_F1NField = value; }
+            get { return vD_F1NField; }
+            set { vD_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VD_F1B
         {
-            get { return this.vD_F1BField; }
-            set { this.vD_F1BField = value; }
+            get { return vD_F1BField; }
+            set { vD_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_VD_F
         {
-            get { return this.a2_VD_FField; }
-            set { this.a2_VD_FField = value; }
+            get { return a2_VD_FField; }
+            set { a2_VD_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VD_F2N
         {
-            get { return this.vD_F2NField; }
-            set { this.vD_F2NField = value; }
+            get { return vD_F2NField; }
+            set { vD_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VD_F2B
         {
-            get { return this.vD_F2BField; }
-            set { this.vD_F2BField = value; }
+            get { return vD_F2BField; }
+            set { vD_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_VD_F
         {
-            get { return this.a3_VD_FField; }
-            set { this.a3_VD_FField = value; }
+            get { return a3_VD_FField; }
+            set { a3_VD_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VD_F3N
         {
-            get { return this.vD_F3NField; }
-            set { this.vD_F3NField = value; }
+            get { return vD_F3NField; }
+            set { vD_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VD_F3B
         {
-            get { return this.vD_F3BField; }
-            set { this.vD_F3BField = value; }
+            get { return vD_F3BField; }
+            set { vD_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TYPE
         {
-            get { return this.tYPEField; }
-            set { this.tYPEField = value; }
+            get { return tYPEField; }
+            set { tYPEField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string ELEM_DIAGN
         {
-            get { return this.eLEM_DIAGNField; }
-            set { this.eLEM_DIAGNField = value; }
+            get { return eLEM_DIAGNField; }
+            set { eLEM_DIAGNField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P_DIAGN_EL
         {
-            get { return this.p_DIAGN_ELField; }
-            set { this.p_DIAGN_ELField = value; }
+            get { return p_DIAGN_ELField; }
+            set { p_DIAGN_ELField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A1_P_EL_F
         {
-            get { return this.a1_P_EL_FField; }
-            set { this.a1_P_EL_FField = value; }
+            get { return a1_P_EL_FField; }
+            set { a1_P_EL_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P_EL_F1N
         {
-            get { return this.p_EL_F1NField; }
-            set { this.p_EL_F1NField = value; }
+            get { return p_EL_F1NField; }
+            set { p_EL_F1NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P_EL_F1B
         {
-            get { return this.p_EL_F1BField; }
-            set { this.p_EL_F1BField = value; }
+            get { return p_EL_F1BField; }
+            set { p_EL_F1BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A2_P_EL_F
         {
-            get { return this.a2_P_EL_FField; }
-            set { this.a2_P_EL_FField = value; }
+            get { return a2_P_EL_FField; }
+            set { a2_P_EL_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P_EL_F2N
         {
-            get { return this.p_EL_F2NField; }
-            set { this.p_EL_F2NField = value; }
+            get { return p_EL_F2NField; }
+            set { p_EL_F2NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P_EL_F2B
         {
-            get { return this.p_EL_F2BField; }
-            set { this.p_EL_F2BField = value; }
+            get { return p_EL_F2BField; }
+            set { p_EL_F2BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string A3_P_EL_F
         {
-            get { return this.a3_P_EL_FField; }
-            set { this.a3_P_EL_FField = value; }
+            get { return a3_P_EL_FField; }
+            set { a3_P_EL_FField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P_EL_F3N
         {
-            get { return this.p_EL_F3NField; }
-            set { this.p_EL_F3NField = value; }
+            get { return p_EL_F3NField; }
+            set { p_EL_F3NField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string P_EL_F3B
         {
-            get { return this.p_EL_F3BField; }
-            set { this.p_EL_F3BField = value; }
+            get { return p_EL_F3BField; }
+            set { p_EL_F3BField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string SOVM
         {
-            get { return this.sOVMField; }
-            set { this.sOVMField = value; }
+            get { return sOVMField; }
+            set { sOVMField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string SOVM0
         {
-            get { return this.sOVM0Field; }
-            set { this.sOVM0Field = value; }
+            get { return sOVM0Field; }
+            set { sOVM0Field = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string SOVM1
         {
-            get { return this.sOVM1Field; }
-            set { this.sOVM1Field = value; }
+            get { return sOVM1Field; }
+            set { sOVM1Field = value; }
         }
         
         #endregion
@@ -1525,127 +1532,126 @@ using Microsoft.EntityFrameworkCore;
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlType(AnonymousType = true)]
     public partial class ROOTALTERNATELISTALT
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ITEM", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("ITEM", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTALTERNATELISTALTITEM> ITEM { get; set; }
 
         /// <remarks/>
         //[System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.Xml.Serialization.XmlIgnore()]
+        [XmlAttribute]
         [Key]
         public string ID { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Num { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string NodeStartID { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string NodeEndID { get; set; }
     }
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlType(AnonymousType = true)]
     public partial class ROOTALTERNATELISTALTITEM
     {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string ID { get; set; }
     }
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlType(AnonymousType = true)]
     public partial class ROOTTYPEPARAM
     {
 
         /// <remarks/>
         //[System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.Xml.Serialization.XmlIgnore()]
         [Key]
+        [XmlIgnore]
         public string ID { get; set; }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Value { get; set; }
         
     }
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlType(AnonymousType = true)]
     public partial class ROOTTYPEDECISION
     {
 
         /// <remarks/>
         //System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.Xml.Serialization.XmlIgnore()]
+        [XmlIgnore]
         [Key]
         public string ID { get; set; }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Params", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("Params", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTTYPEDECISIONParams> Params { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Type { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Sovm { get; set; }
     }
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlType(AnonymousType = true)]
     public partial class ROOTTYPEDECISIONParams
     {
 
         /// <remarks/>
-        //[System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.Xml.Serialization.XmlIgnore()]
+        [XmlIgnore]
         [Key]
         public string ID { get; set; }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string V { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string T { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string VD{ get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TD{ get; set; }
     }
 

@@ -30,7 +30,8 @@ public class Calculate
         {
             await using (var conn = dataSource.OpenConnection())
             {
-                //const string sql = @"SELECT ""NAME"" FROM ""ROOTMAINLISTTFSTFEPARAMSParamAlt""";
+                //1. const string sql = @"SELECT ""NAME"" FROM ""ROOTMAINLISTTFSTFEPARAMSParamAlt""";
+                //2.
                 const string sql = @"SELECT ""NAME"" FROM ""PrecedentsParamAlt""";
                 await using var cmd1 = new NpgsqlCommand(sql, conn);
                 await using var reader = await cmd1.ExecuteReaderAsync();
@@ -172,7 +173,7 @@ public class Calculate
                    id_tfc
             FROM domain_objects
             ORDER BY distance
-            LIMIT 20;";
+            LIMIT 4;";
 
             await using var searchCmd = new NpgsqlCommand(sql, conn);
             searchCmd.Parameters.AddWithValue("q", q);
@@ -186,6 +187,7 @@ public class Calculate
             var compareB = 0.0;
             var compareT = 0.0;
             var compareV = 0.0;
+            var tfe_name = "";
             var empty = true;
             var readyToCompare = false;
             
@@ -212,6 +214,7 @@ public class Calculate
                     {
                         compareID = id_tfc;
                         comparedTFE = t;
+                        tfe_name = grp + " " + role;
                         compareV = pr[0];
                         compareT = pr[1];
                         compareB = pr[2];   
@@ -224,6 +227,7 @@ public class Calculate
                         {
                             compareID = id_tfc;
                             comparedTFE = t;
+                            tfe_name = grp + " " + role;
                             compareV = pr[0];
                             compareT = pr[1];
                             compareB = pr[2]; 
@@ -237,6 +241,7 @@ public class Calculate
                     {
                         compareID = id_tfc;
                         comparedTFE = t;
+                        tfe_name = grp + " " + role;
                         compareV = or[0];
                         compareT = or[1];
                         compareB = or[2];
@@ -249,23 +254,56 @@ public class Calculate
                         {
                             compareID = id_tfc;
                             comparedTFE = t;
+                            tfe_name = grp + " " + role;
                             compareV = or[0];
                             compareT = or[1];
                             compareB = or[2]; 
                         }
                     } 
                 }
-                else
-                {
-                    
-                }
-                    //result.Add(id,dist);
             }
-        
+            
+            var p = $"Best result {comparedTFE} | {compareV} | {compareT} | {compareB}";
+            Console.WriteLine(p);
+            
+            //logic create new TFS with optimised TFE
+            var res = await UpdateTfsAsync(compareID,tfe_name, compareV, compareT, compareB);
+
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
         }
+    }
+    
+    public async Task<int> UpdateTfsAsync(Guid id, string tfe_text, double v, double t, double b)
+    {
+        const string sql = @"
+        UPDATE ""ROOTMAINLISTTFSTFEPARAMSParamAlt""
+        SET    ""NAME"" = @name,
+               ""B""    = @b,
+               ""V""    = @v,
+               ""T""    = @t
+        WHERE  ""ID""   = @id;";
+
+        const string cs = "Host=localhost;Database=postgres;Username=postgres;Password=admin;";
+
+        // DataSource без UseVector (векторы тут не используются)
+        var dsb = new NpgsqlDataSourceBuilder(cs);
+        await using var dataSource = dsb.Build();
+
+        using var conn = dataSource.OpenConnection();
+        using var cmd  = new NpgsqlCommand(sql, conn);
+
+        // параметры создаём один раз (AddWithValue — как вы просили)
+        cmd.Parameters.AddWithValue("name", tfe_text ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("b", b);   // double → double precision
+        cmd.Parameters.AddWithValue("v", v);
+        cmd.Parameters.AddWithValue("t", t);
+        cmd.Parameters.AddWithValue("id","a0297d99-2cd2-47a8-a1fe-40ce177887b7");
+
+        // выполняем запрос
+        var affected = await cmd.ExecuteNonQueryAsync();
+        return affected;
     }
 }

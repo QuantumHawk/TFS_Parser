@@ -19,6 +19,53 @@ namespace TFS_Parser.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("TFS_Parser.Entities.ROOT+ROOTANCESTORLISTANCS", b =>
+                {
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<string>("IdBlock")
+                        .HasColumnType("text");
+
+                    b.Property<string>("IdShapeAncestor")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("TFSID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TFSID");
+
+                    b.ToTable("ROOTANCESTORLISTANCS");
+                });
+
+            modelBuilder.Entity("TFS_Parser.Entities.ROOT+ROOTOGRSOVMLISTOGR", b =>
+                {
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Col")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Row")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("TFSID")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TFSID");
+
+                    b.ToTable("ROOTOGRSOVMLISTOGR");
+                });
+
             modelBuilder.Entity("TFS_Parser.Entities.ROOTALTERNATELISTALT", b =>
                 {
                     b.Property<string>("ID")
@@ -116,6 +163,418 @@ namespace TFS_Parser.Migrations
                     b.ToTable("ROOTMAINLISTTFSTFE");
                 });
 
+            modelBuilder.Entity("TFS_Parser.Entities.ROOTMAINLISTTFSTFEPARAMSParamAlt", b =>
+                {
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_B_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_K00_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_K11_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_P00_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_P11_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_P_EL_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_TD_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_TF_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_T_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_VD_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_VF_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A1_V_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_B_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_K00_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_K11_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_P00_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_P11_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_P_EL_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_TD_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_TF_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_T_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_VD_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_VF_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A2_V_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_B_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_K00_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_K11_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_P00_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_P11_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_P_EL_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_TD_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_TF_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_T_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_VD_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_VF_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("A3_V_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("B_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("B_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("B_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("B_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("B_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("B_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ELEMENT")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ELEM_DIAGN")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FUNCTION")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K00_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K00_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K00_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K00_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K00_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K00_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K11_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K11_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K11_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K11_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K11_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K11_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K_00")
+                        .HasColumnType("text");
+
+                    b.Property<string>("K_11")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NAME")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NUMBER")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P00_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P00_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P00_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P00_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P00_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P00_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P11_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P11_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P11_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P11_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P11_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P11_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PREDICAT")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PRED_ISTOR")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P_00")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P_11")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P_DIAGN_EL")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P_EL_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P_EL_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P_EL_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P_EL_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P_EL_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("P_EL_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ROOTMAINLISTTFSTFEID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SOSTAV")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SOVM")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SOVM0")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SOVM1")
+                        .HasColumnType("text");
+
+                    b.Property<string>("T")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TD_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TD_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TD_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TD_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TD_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TD_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TF_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TF_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TF_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TF_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TF_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TF_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TYPE")
+                        .HasColumnType("text");
+
+                    b.Property<string>("T_D")
+                        .HasColumnType("text");
+
+                    b.Property<string>("T_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("T_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("T_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("T_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("T_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("T_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("T_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("V")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VD_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VD_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VD_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VD_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VD_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VD_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VF_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VF_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VF_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VF_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VF_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VF_F3N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("V_D")
+                        .HasColumnType("text");
+
+                    b.Property<string>("V_F")
+                        .HasColumnType("text");
+
+                    b.Property<string>("V_F1B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("V_F1N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("V_F2B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("V_F2N")
+                        .HasColumnType("text");
+
+                    b.Property<string>("V_F3B")
+                        .HasColumnType("text");
+
+                    b.Property<string>("V_F3N")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ROOTMAINLISTTFSTFEID");
+
+                    b.ToTable("ROOTMAINLISTTFSTFEPARAMSParamAlt");
+                });
+
             modelBuilder.Entity("TFS_Parser.Entities.ROOTTYPEDECISION", b =>
                 {
                     b.Property<string>("ID")
@@ -192,15 +651,23 @@ namespace TFS_Parser.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.Property<string>("ANCESTORLIST")
-                        .HasColumnType("text");
-
-                    b.Property<string>("OGRSOVMLIST")
-                        .HasColumnType("text");
-
                     b.HasKey("ID");
 
                     b.ToTable("TFSes");
+                });
+
+            modelBuilder.Entity("TFS_Parser.Entities.ROOT+ROOTANCESTORLISTANCS", b =>
+                {
+                    b.HasOne("TFS_Parser.Entities.TFS", null)
+                        .WithMany("ANCESTORLIST")
+                        .HasForeignKey("TFSID");
+                });
+
+            modelBuilder.Entity("TFS_Parser.Entities.ROOT+ROOTOGRSOVMLISTOGR", b =>
+                {
+                    b.HasOne("TFS_Parser.Entities.TFS", null)
+                        .WithMany("OGRSOVMLIST")
+                        .HasForeignKey("TFSID");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTALTERNATELISTALT", b =>
@@ -229,6 +696,13 @@ namespace TFS_Parser.Migrations
                     b.HasOne("TFS_Parser.Entities.ROOTMAINLISTTFS", null)
                         .WithMany("TFE")
                         .HasForeignKey("ROOTMAINLISTTFSID");
+                });
+
+            modelBuilder.Entity("TFS_Parser.Entities.ROOTMAINLISTTFSTFEPARAMSParamAlt", b =>
+                {
+                    b.HasOne("TFS_Parser.Entities.ROOTMAINLISTTFSTFE", null)
+                        .WithMany("PARAMS")
+                        .HasForeignKey("ROOTMAINLISTTFSTFEID");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTTYPEDECISION", b =>
@@ -262,6 +736,11 @@ namespace TFS_Parser.Migrations
                     b.Navigation("TFE");
                 });
 
+            modelBuilder.Entity("TFS_Parser.Entities.ROOTMAINLISTTFSTFE", b =>
+                {
+                    b.Navigation("PARAMS");
+                });
+
             modelBuilder.Entity("TFS_Parser.Entities.ROOTTYPEDECISION", b =>
                 {
                     b.Navigation("Params");
@@ -271,7 +750,11 @@ namespace TFS_Parser.Migrations
                 {
                     b.Navigation("ALTERNATELIST");
 
+                    b.Navigation("ANCESTORLIST");
+
                     b.Navigation("MAINLIST");
+
+                    b.Navigation("OGRSOVMLIST");
 
                     b.Navigation("TYPEDECISION");
 

@@ -4,6 +4,7 @@ using System.Xml;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -21,36 +22,15 @@ namespace TFS_Parser
         
         public static async Task Main(string[] args)
         {
-            int i = 1;
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             
-            // Load the Schema Into Memory. The Error handler is also presented here.
-
-            var xsd = path_xsd + "3_1.xsd";
-            //1. test //var fileName = path + "3_begining.xml";
-            //2. test //var fileName = path + "3_1.xml";
-            var fileName = path_files + "test_geniat_zad.xml";
-
-            StringReader sr = new StringReader(File.ReadAllText(xsd));
-            XmlSchema sch = XmlSchema.Read(sr,null);
-
-            // Create the Reader settings.
-            XmlReaderSettings settings = new XmlReaderSettings();
-            settings.Schemas.Add(sch);
-
-            // Create an XmlReader specifying the settings.
-            //StringReader xmlData = new StringReader(File.ReadAllText("3_1.xml"));
-            StreamReader xmlData = new StreamReader(fileName,Encoding.GetEncoding("windows-1251"));
-            XmlReader xr = XmlReader.Create(xmlData,settings);
-
-            // Use the Native .NET Serializer (probably u cud substitute the Xsd2Code serializer here.
-            XmlSerializer xs_1 = new XmlSerializer(typeof(ROOT));
-            ROOT data = (ROOT)xs_1.Deserialize(xr);
+            //var data = await ParseFile();
+            //await SaveToDB(data);
             
-            await SaveToDB(data);
+            //var main = data.MAINLIST;
             
-            var main = data.MAINLIST;
-            
+            #region changeTFS
+
             //todo попробовать поменять раб операции местами и выгрузить в файл -> новая TFS
             //it works
             /*var temp2 = new List<ROOTMAINLISTTFSTFEPARAMSParamAlt>();
@@ -60,7 +40,7 @@ namespace TFS_Parser
             temp1 = main[0].TFE[0].PARAMS;
             temp2 = main[1].TFE[0].PARAMS;*/
 
-           /* foreach (var tfs in main)
+            /* foreach (var tfs in main)
             {
                 var tfes = tfs.TFE;
                 foreach (var tfe in tfes)
@@ -73,7 +53,7 @@ namespace TFS_Parser
                             break;
                         default:
                             continue;
-                    
+
                 }
             }
             }
@@ -100,7 +80,9 @@ namespace TFS_Parser
                 }
             };*/
 
-            XmlWriterSettings settingsWriter = new XmlWriterSettings();
+            #endregion
+            
+            /*XmlWriterSettings settingsWriter = new XmlWriterSettings();
             settingsWriter.Indent = true;
             settingsWriter.IndentChars = ("\t");
             settingsWriter.OmitXmlDeclaration = false;
@@ -116,13 +98,64 @@ namespace TFS_Parser
 
                 var xs = new XmlSerializer(typeof(ROOT));
                 xs.Serialize(writer, data, ns);
-            }
+            }*/
             
-            //xs.Serialize(writer,data);
+            #region LoadFromDBAndCreateFile
+            var root = await LoadFromDBAsync(1);
+            if (root != null)
+            {
+                XmlWriterSettings settingsWriter = new XmlWriterSettings();
+                settingsWriter.Indent = true;
+                settingsWriter.IndentChars = ("\t");
+                settingsWriter.OmitXmlDeclaration = false;
+                settingsWriter.Encoding = Encoding.GetEncoding("windows-1251");
 
+                var newName = "new1.xml";
+                var newFile = Path.Combine(path_files, newName);
+            
+                using (var writer = XmlWriter.Create(newFile, settingsWriter))
+                {
+                    var ns = new XmlSerializerNamespaces();
+                    ns.Add("", ""); // Убираем xmlns:xsi и xmlns:xsd
+
+                    var xs = new XmlSerializer(typeof(ROOT));
+                    xs.Serialize(writer, root, ns);
+                }
+
+            }
+            #endregion
 
             Console.WriteLine();
             
+        }
+
+        private static async Task<ROOT> ParseFile(int i = 1)
+        {
+            
+            // Load the Schema Into Memory. The Error handler is also presented here.
+
+            var xsd = path_xsd + "3_1.xsd";
+            //1. test //var fileName = path + "3_begining.xml";
+            //2. test //var fileName = path + "3_1.xml";
+            var fileName = path_files + "test_geniat_zad.xml";
+
+            StringReader sr = new StringReader(File.ReadAllText(xsd));
+            XmlSchema sch = XmlSchema.Read(sr,null);
+
+            // Create the Reader settings.
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.Schemas.Add(sch);
+
+            // Create an XmlReader specifying the settings.
+            //StringReader xmlData = new StringReader(File.ReadAllText("3_1.xml"));
+            StreamReader xmlData = new StreamReader(fileName,Encoding.GetEncoding("windows-1251"));
+            XmlReader xr = XmlReader.Create(xmlData,settings);
+
+            // Use the Native .NET Serializer (probably u cud substitute the Xsd2Code serializer here.
+            XmlSerializer xs_1 = new XmlSerializer(typeof(ROOT));
+            ROOT data = (ROOT)xs_1.Deserialize(xr);
+            
+            return data;
         }
 
         private static async Task SaveToDB(ROOT data)
@@ -131,53 +164,10 @@ namespace TFS_Parser
             {
                 try
                 {
-                    var id = 2;
+                    var id = 1;
                     var checkIfExist = context.TFSes.AnyAsync(x => x.ID == id).Result;
                     
                     var t = context.TFSes.FirstOrDefault(x => x.ID == 1);
-
-                    List<TFS> tfs;
-
-                    tfs = context.TFSes
-                        .Include(x => x.ALTERNATELIST)
-                        .ThenInclude(x => x.ITEM)
-                        .Include(x => x.TYPEDECISION)
-                        .ThenInclude(x => x.Params)
-                        .Include(x => x.MAINLIST)
-                        .ThenInclude(x => x.TFE)
-                        .ThenInclude(x => x.PARAMS)
-                        .Select(data => new TFS()
-                        {
-                            ID = data.ID,
-                            MAINLIST = data.MAINLIST,
-                            TYPEPARAM = data.TYPEPARAM,
-                            OGRSOVMLIST = data.OGRSOVMLIST,
-                            ANCESTORLIST = data.ANCESTORLIST,
-                            TYPEDECISION = data.TYPEDECISION,
-                            ALTERNATELIST = data.ALTERNATELIST
-                            
-                        }).ToList();
-
-                    //code for create new file from old master         
-                    XmlWriterSettings sw = new XmlWriterSettings();
-                    sw.Indent = true;
-                    sw.IndentChars = ("\t");
-                    sw.OmitXmlDeclaration = true;
-                    sw.Encoding = Encoding.GetEncoding("windows-1251");;
-
-                    XmlWriter w = XmlWriter.Create($"Root6.xml", sw);
-                    XmlSerializer s = new XmlSerializer(typeof(ROOT));
-                    var root = new ROOT()
-                    {
-                        MAINLIST = tfs[0].MAINLIST,
-                        TYPEPARAM = tfs[0].TYPEPARAM,
-                        OGRSOVMLIST = tfs[0].OGRSOVMLIST,
-                        ANCESTORLIST = tfs[0].ANCESTORLIST,
-                        TYPEDECISION = tfs[0].TYPEDECISION,
-                        ALTERNATELIST = tfs[0].ALTERNATELIST
-
-                    };
-                    s.Serialize(w, root);
                     
                     if (checkIfExist)
                     {
@@ -230,6 +220,87 @@ namespace TFS_Parser
                     throw;
                 }
             }
+        }
+
+        private static async Task<ROOT?> LoadFromDBAsync(int id, CancellationToken ct = default)
+        {
+            await using var context = new PostgresContext();
+
+            // Грузим один TFS c нужными графами
+            var tfs = await context.TFSes
+                .AsNoTracking()
+                .AsSplitQuery() // полезно при множественных Include
+                .Where(x => x.ID == id)
+                .Include(x => x.ALTERNATELIST)
+                .ThenInclude(x => x.ITEM)
+                .Include(x => x.TYPEDECISION)
+                .ThenInclude(x => x.Params)
+                .Include(x => x.MAINLIST)
+                .ThenInclude(x => x.TFE)
+                .ThenInclude(x => x.PARAMS)
+                .Include(x => x.OGRSOVMLIST)
+                .Include(x => x.ANCESTORLIST)
+                // Проецируем в TFS, чтобы не тащить лишние поля/трекер
+                .Select(data => new TFS
+                {
+                    ID            = data.ID,
+                    MAINLIST      = data.MAINLIST,
+                    TYPEPARAM     = data.TYPEPARAM,
+                    OGRSOVMLIST   = data.OGRSOVMLIST,
+                    ANCESTORLIST  = data.ANCESTORLIST,
+                    TYPEDECISION  = data.TYPEDECISION,
+                    ALTERNATELIST = data.ALTERNATELIST
+                })
+                .SingleOrDefaultAsync(ct);
+
+            if (tfs is null)
+                return null; // или бросьте исключение, если запись обязательна
+
+            // Собираем ROOT из загруженного TFS (симметрично вашему SaveToDB)
+            var root = new ROOT
+            {
+                MAINLIST      = tfs.MAINLIST,
+                TYPEPARAM     = tfs.TYPEPARAM,
+                OGRSOVMLIST   = tfs.OGRSOVMLIST,
+                ANCESTORLIST  = tfs.ANCESTORLIST,
+                TYPEDECISION  = tfs.TYPEDECISION,
+                ALTERNATELIST = tfs.ALTERNATELIST
+            };
+
+            return root;
+        }
+        
+        private static async Task<List<ROOT>> LoadAllFromDBAsync(CancellationToken ct = default)
+        {
+            await using var context = new PostgresContext();
+
+            var tfsList = await context.TFSes
+                .AsNoTracking()
+                .AsSplitQuery()
+                .Include(x => x.ALTERNATELIST).ThenInclude(x => x.ITEM)
+                .Include(x => x.TYPEDECISION).ThenInclude(x => x.Params)
+                .Include(x => x.MAINLIST).ThenInclude(x => x.TFE).ThenInclude(x => x.PARAMS)
+                .Select(data => new TFS
+                {
+                    ID            = data.ID,
+                    MAINLIST      = data.MAINLIST,
+                    TYPEPARAM     = data.TYPEPARAM,
+                    OGRSOVMLIST   = data.OGRSOVMLIST,
+                    ANCESTORLIST  = data.ANCESTORLIST,
+                    TYPEDECISION  = data.TYPEDECISION,
+                    ALTERNATELIST = data.ALTERNATELIST
+                })
+                .ToListAsync(ct);
+
+            return tfsList.Select(tfs => new ROOT
+            {
+                MAINLIST      = tfs.MAINLIST,
+                TYPEPARAM     = tfs.TYPEPARAM,
+                OGRSOVMLIST   = tfs.OGRSOVMLIST,
+                ANCESTORLIST  = tfs.ANCESTORLIST,
+                TYPEDECISION  = tfs.TYPEDECISION,
+                ALTERNATELIST = tfs.ALTERNATELIST
+            }).ToList();
         }
     }
 }
