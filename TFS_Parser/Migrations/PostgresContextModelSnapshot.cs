@@ -19,57 +19,14 @@ namespace TFS_Parser.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("TFS_Parser.Entities.ROOT+ROOTANCESTORLISTANCS", b =>
-                {
-                    b.Property<string>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text");
-
-                    b.Property<string>("IdBlock")
-                        .HasColumnType("text");
-
-                    b.Property<string>("IdShapeAncestor")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("TFSID")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("TFSID");
-
-                    b.ToTable("ROOTANCESTORLISTANCS");
-                });
-
-            modelBuilder.Entity("TFS_Parser.Entities.ROOT+ROOTOGRSOVMLISTOGR", b =>
-                {
-                    b.Property<string>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Col")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Row")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("TFSID")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("text");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("TFSID");
-
-                    b.ToTable("ROOTOGRSOVMLISTOGR");
-                });
-
             modelBuilder.Entity("TFS_Parser.Entities.ROOTALTERNATELISTALT", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<int>("ID_DB")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("ID")
                         .HasColumnType("text");
 
                     b.Property<string>("NodeEndID")
@@ -81,36 +38,67 @@ namespace TFS_Parser.Migrations
                     b.Property<string>("Num")
                         .HasColumnType("text");
 
-                    b.Property<int?>("TFSID")
+                    b.Property<int?>("TFSID_DB")
                         .HasColumnType("integer");
 
-                    b.HasKey("ID");
+                    b.HasKey("ID_DB");
 
-                    b.HasIndex("TFSID");
+                    b.HasIndex("TFSID_DB");
 
                     b.ToTable("ROOTALTERNATELISTALT");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTALTERNATELISTALTITEM", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<int>("ID_DB")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("ID")
                         .HasColumnType("text");
 
-                    b.Property<string>("ROOTALTERNATELISTALTID")
-                        .HasColumnType("text");
+                    b.Property<int?>("ROOTALTERNATELISTALTID_DB")
+                        .HasColumnType("integer");
 
-                    b.HasKey("ID");
+                    b.HasKey("ID_DB");
 
-                    b.HasIndex("ROOTALTERNATELISTALTID");
+                    b.HasIndex("ROOTALTERNATELISTALTID_DB");
 
                     b.ToTable("ROOTALTERNATELISTALTITEM");
                 });
 
+            modelBuilder.Entity("TFS_Parser.Entities.ROOTANCESTORLISTANCS", b =>
+                {
+                    b.Property<int>("ID_DB")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("IdBlock")
+                        .HasColumnType("text");
+
+                    b.Property<string>("IdShapeAncestor")
+                        .HasColumnType("text");
+
+                    b.Property<int>("TFSID_DB")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID_DB");
+
+                    b.HasIndex("TFSID_DB");
+
+                    b.ToTable("ROOTANCESTORLISTANCS");
+                });
+
             modelBuilder.Entity("TFS_Parser.Entities.ROOTMAINLISTTFS", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<int>("ID_DB")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("ID")
                         .HasColumnType("text");
 
                     b.Property<string>("NextID")
@@ -131,43 +119,48 @@ namespace TFS_Parser.Migrations
                     b.Property<string>("StartPointY")
                         .HasColumnType("text");
 
-                    b.Property<int?>("TFSID")
+                    b.Property<int>("TFSID_DB")
                         .HasColumnType("integer");
 
                     b.Property<string>("TypeID")
                         .HasColumnType("text");
 
-                    b.HasKey("ID");
+                    b.HasKey("ID_DB");
 
-                    b.HasIndex("TFSID");
+                    b.HasIndex("TFSID_DB");
 
                     b.ToTable("ROOTMAINLISTTFS");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTMAINLISTTFSTFE", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<int>("ID_DB")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("ID")
                         .HasColumnType("text");
 
-                    b.Property<string>("ROOTMAINLISTTFSID")
-                        .HasColumnType("text");
+                    b.Property<int?>("ROOTMAINLISTTFSID_DB")
+                        .HasColumnType("integer");
 
                     b.Property<string>("TypeID")
                         .HasColumnType("text");
 
-                    b.HasKey("ID");
+                    b.HasKey("ID_DB");
 
-                    b.HasIndex("ROOTMAINLISTTFSID");
+                    b.HasIndex("ROOTMAINLISTTFSID_DB");
 
                     b.ToTable("ROOTMAINLISTTFSTFE");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTMAINLISTTFSTFEPARAMSParamAlt", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<int>("ID_DB")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("text");
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
 
                     b.Property<string>("A1_B_F")
                         .HasColumnType("text");
@@ -424,8 +417,8 @@ namespace TFS_Parser.Migrations
                     b.Property<string>("P_EL_F3N")
                         .HasColumnType("text");
 
-                    b.Property<string>("ROOTMAINLISTTFSTFEID")
-                        .HasColumnType("text");
+                    b.Property<int?>("ROOTMAINLISTTFSTFEID_DB")
+                        .HasColumnType("integer");
 
                     b.Property<string>("SOSTAV")
                         .HasColumnType("text");
@@ -568,43 +561,77 @@ namespace TFS_Parser.Migrations
                     b.Property<string>("V_F3N")
                         .HasColumnType("text");
 
-                    b.HasKey("ID");
+                    b.HasKey("ID_DB");
 
-                    b.HasIndex("ROOTMAINLISTTFSTFEID");
+                    b.HasIndex("ROOTMAINLISTTFSTFEID_DB");
 
                     b.ToTable("ROOTMAINLISTTFSTFEPARAMSParamAlt");
                 });
 
+            modelBuilder.Entity("TFS_Parser.Entities.ROOTOGRSOVMLISTOGR", b =>
+                {
+                    b.Property<int>("ID_DB")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("Col")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Row")
+                        .HasColumnType("text");
+
+                    b.Property<int>("TFSID_DB")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID_DB");
+
+                    b.HasIndex("TFSID_DB");
+
+                    b.ToTable("ROOTOGRSOVMLISTOGR");
+                });
+
             modelBuilder.Entity("TFS_Parser.Entities.ROOTTYPEDECISION", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<int>("ID_DB")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("text");
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
 
                     b.Property<string>("Sovm")
                         .HasColumnType("text");
 
-                    b.Property<int?>("TFSID")
+                    b.Property<int?>("TFSID_DB")
                         .HasColumnType("integer");
 
                     b.Property<string>("Type")
                         .HasColumnType("text");
 
-                    b.HasKey("ID");
+                    b.HasKey("ID_DB");
 
-                    b.HasIndex("TFSID");
+                    b.HasIndex("TFSID_DB");
 
                     b.ToTable("ROOTTYPEDECISION");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTTYPEDECISIONParams", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<int>("ID_DB")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("B")
                         .HasColumnType("text");
 
-                    b.Property<string>("ROOTTYPEDECISIONID")
+                    b.Property<string>("BD")
                         .HasColumnType("text");
+
+                    b.Property<int?>("ROOTTYPEDECISIONID_DB")
+                        .HasColumnType("integer");
 
                     b.Property<string>("T")
                         .HasColumnType("text");
@@ -618,112 +645,119 @@ namespace TFS_Parser.Migrations
                     b.Property<string>("VD")
                         .HasColumnType("text");
 
-                    b.HasKey("ID");
+                    b.HasKey("ID_DB");
 
-                    b.HasIndex("ROOTTYPEDECISIONID");
+                    b.HasIndex("ROOTTYPEDECISIONID_DB");
 
                     b.ToTable("ROOTTYPEDECISIONParams");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTTYPEPARAM", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<int>("ID_DB")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("text");
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
 
-                    b.Property<int?>("TFSID")
+                    b.Property<int?>("TFSID_DB")
                         .HasColumnType("integer");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");
 
-                    b.HasKey("ID");
+                    b.HasKey("ID_DB");
 
-                    b.HasIndex("TFSID");
+                    b.HasIndex("TFSID_DB");
 
                     b.ToTable("ROOTTYPEPARAM");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.TFS", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ID_DB")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.HasKey("ID");
+                    b.HasKey("ID_DB");
 
                     b.ToTable("TFSes");
-                });
-
-            modelBuilder.Entity("TFS_Parser.Entities.ROOT+ROOTANCESTORLISTANCS", b =>
-                {
-                    b.HasOne("TFS_Parser.Entities.TFS", null)
-                        .WithMany("ANCESTORLIST")
-                        .HasForeignKey("TFSID");
-                });
-
-            modelBuilder.Entity("TFS_Parser.Entities.ROOT+ROOTOGRSOVMLISTOGR", b =>
-                {
-                    b.HasOne("TFS_Parser.Entities.TFS", null)
-                        .WithMany("OGRSOVMLIST")
-                        .HasForeignKey("TFSID");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTALTERNATELISTALT", b =>
                 {
                     b.HasOne("TFS_Parser.Entities.TFS", null)
                         .WithMany("ALTERNATELIST")
-                        .HasForeignKey("TFSID");
+                        .HasForeignKey("TFSID_DB");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTALTERNATELISTALTITEM", b =>
                 {
                     b.HasOne("TFS_Parser.Entities.ROOTALTERNATELISTALT", null)
                         .WithMany("ITEM")
-                        .HasForeignKey("ROOTALTERNATELISTALTID");
+                        .HasForeignKey("ROOTALTERNATELISTALTID_DB");
+                });
+
+            modelBuilder.Entity("TFS_Parser.Entities.ROOTANCESTORLISTANCS", b =>
+                {
+                    b.HasOne("TFS_Parser.Entities.TFS", null)
+                        .WithMany("ANCESTORLIST")
+                        .HasForeignKey("TFSID_DB")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTMAINLISTTFS", b =>
                 {
                     b.HasOne("TFS_Parser.Entities.TFS", null)
                         .WithMany("MAINLIST")
-                        .HasForeignKey("TFSID");
+                        .HasForeignKey("TFSID_DB")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTMAINLISTTFSTFE", b =>
                 {
                     b.HasOne("TFS_Parser.Entities.ROOTMAINLISTTFS", null)
                         .WithMany("TFE")
-                        .HasForeignKey("ROOTMAINLISTTFSID");
+                        .HasForeignKey("ROOTMAINLISTTFSID_DB");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTMAINLISTTFSTFEPARAMSParamAlt", b =>
                 {
                     b.HasOne("TFS_Parser.Entities.ROOTMAINLISTTFSTFE", null)
                         .WithMany("PARAMS")
-                        .HasForeignKey("ROOTMAINLISTTFSTFEID");
+                        .HasForeignKey("ROOTMAINLISTTFSTFEID_DB");
+                });
+
+            modelBuilder.Entity("TFS_Parser.Entities.ROOTOGRSOVMLISTOGR", b =>
+                {
+                    b.HasOne("TFS_Parser.Entities.TFS", null)
+                        .WithMany("OGRSOVMLIST")
+                        .HasForeignKey("TFSID_DB")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTTYPEDECISION", b =>
                 {
                     b.HasOne("TFS_Parser.Entities.TFS", null)
                         .WithMany("TYPEDECISION")
-                        .HasForeignKey("TFSID");
+                        .HasForeignKey("TFSID_DB");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTTYPEDECISIONParams", b =>
                 {
                     b.HasOne("TFS_Parser.Entities.ROOTTYPEDECISION", null)
                         .WithMany("Params")
-                        .HasForeignKey("ROOTTYPEDECISIONID");
+                        .HasForeignKey("ROOTTYPEDECISIONID_DB");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTTYPEPARAM", b =>
                 {
                     b.HasOne("TFS_Parser.Entities.TFS", null)
                         .WithMany("TYPEPARAM")
-                        .HasForeignKey("TFSID");
+                        .HasForeignKey("TFSID_DB");
                 });
 
             modelBuilder.Entity("TFS_Parser.Entities.ROOTALTERNATELISTALT", b =>

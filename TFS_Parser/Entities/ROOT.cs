@@ -33,7 +33,6 @@ using Microsoft.EntityFrameworkCore;
     [XmlRoot(Namespace = "", IsNullable = false)]
     public partial class ROOT
     {
-
         /// <remarks/>
         [XmlArray(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [XmlArrayItem("TFS", typeof(ROOTMAINLISTTFS),
@@ -45,28 +44,6 @@ using Microsoft.EntityFrameworkCore;
         [XmlArrayItem("ANCS", typeof(ROOTANCESTORLISTANCS),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<ROOTANCESTORLISTANCS> ANCESTORLIST{ get; set; }
-
-        /// <remarks/>
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-        [Serializable]
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.DesignerCategoryAttribute("code")]
-        [XmlType(AnonymousType = true)]
-        public class ROOTANCESTORLISTANCS
-        {
-            /// <remarks/>
-            //[System.Xml.Serialization.XmlAttributeAttribute()]
-            [XmlIgnore]
-            [Key]
-            public string ID { get; set; }
-            
-            /// <remarks/>
-            [XmlAttribute]
-            public string IdBlock { get; set; }
-            /// <remarks/>
-            [XmlAttribute]
-            public string IdShapeAncestor { get; set; }
-        }
 
         /// <remarks/>
         [XmlArray(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -81,37 +58,62 @@ using Microsoft.EntityFrameworkCore;
         public List<ROOTOGRSOVMLISTOGR> OGRSOVMLIST{ get; set; }
 
         /// <remarks/>
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-        [Serializable]
-        [System.Diagnostics.DebuggerStepThroughAttribute]
-        [System.ComponentModel.DesignerCategoryAttribute("code")]
-        [XmlType(AnonymousType = true)]
-        public class ROOTOGRSOVMLISTOGR
-        {
-            /// <remarks/>
-            //[System.Xml.Serialization.XmlAttributeAttribute()]
-            [XmlIgnore]
-            [Key]
-            public string ID { get; set; }
-            
-            /// <remarks/>
-            [XmlAttribute]
-            public string Row { get; set; }
-            /// <remarks/>
-            [XmlAttribute]
-            public string Col { get; set; }
-            /// <remarks/>
-            [XmlAttribute]
-            public string Value { get; set; }
-        }
-
-        /// <remarks/>
         [XmlElement("TYPEPARAM", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTTYPEPARAM> TYPEPARAM { get; set; }
 
         /// <remarks/>
         [XmlElement("TYPEDECISION", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTTYPEDECISION> TYPEDECISION { get; set; }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [XmlType(AnonymousType = true)]
+    public class ROOTANCESTORLISTANCS
+    {
+        /// <remarks/>
+        [XmlIgnore]
+        public int TFSID_DB { get; set; }
+        
+        [XmlIgnore]
+        [Key]
+        public int ID_DB  {get; set; }
+            
+        /// <remarks/>
+        [XmlAttribute]
+        public string IdBlock { get; set; }
+        /// <remarks/>
+        [XmlAttribute]
+        public string IdShapeAncestor { get; set; }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [Serializable]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [XmlType(AnonymousType = true)]
+    public class ROOTOGRSOVMLISTOGR
+    {
+        [XmlIgnore]
+        public int TFSID_DB { get; set; }
+        
+        [XmlIgnore]
+        [Key]
+        public int ID_DB  {get; set; }
+            
+        /// <remarks/>
+        [XmlAttribute]
+        public string Row { get; set; }
+        /// <remarks/>
+        [XmlAttribute]
+        public string Col { get; set; }
+        /// <remarks/>
+        [XmlAttribute]
+        public string Value { get; set; }
     }
 
     /// <remarks/>
@@ -122,14 +124,21 @@ using Microsoft.EntityFrameworkCore;
     [XmlType(AnonymousType = true)]
     public partial class ROOTMAINLISTTFS
     {
-
+        /// <remarks/>
+        [XmlIgnore]
+        public int TFSID_DB { get; set; }
+        
+        /// <remarks/>
+        [XmlIgnore]
+        [Key]
+        public int ID_DB  {get; set; }
+        
         /// <remarks/>
         [XmlElement("TFE", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTMAINLISTTFSTFE> TFE { get; set; }
 
         /// <remarks/>
         [XmlAttribute]
-        [Key]
         public string ID  {get; set; }
 
         /// <remarks/>
@@ -175,10 +184,13 @@ using Microsoft.EntityFrameworkCore;
         [XmlArrayItem("ParamAlt", typeof(ROOTMAINLISTTFSTFEPARAMSParamAlt),
             Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public List<ROOTMAINLISTTFSTFEPARAMSParamAlt> PARAMS { get; set; }
+        
+        [XmlIgnore]
+        [Key]
+        public int ID_DB  {get; set; }
 
         /// <remarks/>
         [XmlAttribute]
-        [Key]
         public string ID { get; set; }
 
         /// <remarks/>
@@ -198,10 +210,9 @@ using Microsoft.EntityFrameworkCore;
     {
         #region fields
         
-        /// <remarks/>
-        [Key]
         [XmlIgnore]
-        public string ID { get; set; }
+        [Key]
+        public int ID_DB  {get; set; }
         
         private string nUMBERField;
 
@@ -1542,10 +1553,11 @@ using Microsoft.EntityFrameworkCore;
         [XmlElement("ITEM", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public List<ROOTALTERNATELISTALTITEM> ITEM { get; set; }
 
-        /// <remarks/>
-        //[System.Xml.Serialization.XmlAttributeAttribute()]
-        [XmlAttribute]
+        [XmlIgnore]
         [Key]
+        public int ID_DB  {get; set; }
+        
+        [XmlAttribute]
         public string ID { get; set; }
 
         /// <remarks/>
@@ -1569,6 +1581,9 @@ using Microsoft.EntityFrameworkCore;
     [XmlType(AnonymousType = true)]
     public partial class ROOTALTERNATELISTALTITEM
     {
+        [XmlIgnore]
+        [Key]
+        public int ID_DB  {get; set; }
         
         /// <remarks/>
         [XmlAttribute]
@@ -1583,12 +1598,9 @@ using Microsoft.EntityFrameworkCore;
     [XmlType(AnonymousType = true)]
     public partial class ROOTTYPEPARAM
     {
-
-        /// <remarks/>
-        //[System.Xml.Serialization.XmlAttributeAttribute()]
-        [Key]
         [XmlIgnore]
-        public string ID { get; set; }
+        [Key]
+        public int ID_DB  {get; set; }
         
         /// <remarks/>
         [XmlAttribute]
@@ -1604,12 +1616,9 @@ using Microsoft.EntityFrameworkCore;
     [XmlType(AnonymousType = true)]
     public partial class ROOTTYPEDECISION
     {
-
-        /// <remarks/>
-        //System.Xml.Serialization.XmlAttributeAttribute()]
         [XmlIgnore]
         [Key]
-        public string ID { get; set; }
+        public int ID_DB  {get; set; }
         
         /// <remarks/>
         [XmlElement("Params", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -1632,11 +1641,9 @@ using Microsoft.EntityFrameworkCore;
     [XmlType(AnonymousType = true)]
     public partial class ROOTTYPEDECISIONParams
     {
-
-        /// <remarks/>
         [XmlIgnore]
         [Key]
-        public string ID { get; set; }
+        public int ID_DB  {get; set; }
         
         /// <remarks/>
         [XmlAttribute]
@@ -1645,7 +1652,10 @@ using Microsoft.EntityFrameworkCore;
         /// <remarks/>
         [XmlAttribute]
         public string T { get; set; }
-
+        
+        [XmlAttribute]
+        public string B { get; set; }
+        
         /// <remarks/>
         [XmlAttribute]
         public string VD{ get; set; }
@@ -1653,6 +1663,9 @@ using Microsoft.EntityFrameworkCore;
         /// <remarks/>
         [XmlAttribute]
         public string TD{ get; set; }
+        
+        [XmlAttribute]
+        public string BD{ get; set; }
     }
 
 }

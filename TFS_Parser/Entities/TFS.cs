@@ -1,12 +1,13 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace TFS_Parser.Entities
 {
-    //used by postgres
     public class TFS: ROOT
     {
         [Key]
-        public int ID { get; set; }
+        public int ID_DB { get; set; }
     }
 }
 

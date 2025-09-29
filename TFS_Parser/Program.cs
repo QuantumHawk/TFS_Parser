@@ -24,8 +24,8 @@ namespace TFS_Parser
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             
-            //var data = await ParseFile();
-            //await SaveToDB(data);
+            var data = await ParseFile();
+            await SaveToDB(data);
             
             //var main = data.MAINLIST;
             
@@ -100,6 +100,8 @@ namespace TFS_Parser
                 xs.Serialize(writer, data, ns);
             }*/
             
+            var test = await LoadAllFromDBAsync();
+            
             #region LoadFromDBAndCreateFile
             var root = await LoadFromDBAsync(1);
             if (root != null)
@@ -165,17 +167,17 @@ namespace TFS_Parser
                 try
                 {
                     var id = 1;
-                    var checkIfExist = context.TFSes.AnyAsync(x => x.ID == id).Result;
+                    var checkIfExist = context.TFSes.AnyAsync(x => x.ID_DB == id).Result;
                     
-                    var t = context.TFSes.FirstOrDefault(x => x.ID == 1);
+                    var t = context.TFSes.FirstOrDefault(x => x.ID_DB == 1);
                     
                     if (checkIfExist)
                     {
-                        var entityToUpdate = context.TFSes.FirstAsync(x => x.ID == id).Result;
+                        var entityToUpdate = context.TFSes.FirstAsync(x => x.ID_DB == id).Result;
                         
                         var entity = new TFS()
                         {
-                            ID = id,
+                            ID_DB = id,
                             MAINLIST = data.MAINLIST,
                             TYPEPARAM = data.TYPEPARAM,
                             OGRSOVMLIST = data.OGRSOVMLIST,
@@ -198,7 +200,7 @@ namespace TFS_Parser
                     {
                         var entity = new TFS()
                         {
-                            ID = id,
+                            ID_DB = id,
                             MAINLIST = data.MAINLIST,
                             TYPEPARAM = data.TYPEPARAM,
                             OGRSOVMLIST = data.OGRSOVMLIST,
@@ -207,7 +209,7 @@ namespace TFS_Parser
                             ALTERNATELIST = data.ALTERNATELIST
 
                         };
-
+                        
                         context.TFSes.Add(entity);
 
                         var res = await context.SaveChangesAsync();
@@ -222,15 +224,15 @@ namespace TFS_Parser
             }
         }
 
-        private static async Task<ROOT?> LoadFromDBAsync(int id, CancellationToken ct = default)
+        private static async Task<ROOT?> LoadFromDBAsync(int id)
         {
             await using var context = new PostgresContext();
 
             // Грузим один TFS c нужными графами
-            var tfs = await context.TFSes
+            var tfs =  context.TFSes
                 .AsNoTracking()
                 .AsSplitQuery() // полезно при множественных Include
-                .Where(x => x.ID == id)
+                .Where(x => x.ID_DB == id)
                 .Include(x => x.ALTERNATELIST)
                 .ThenInclude(x => x.ITEM)
                 .Include(x => x.TYPEDECISION)
@@ -243,7 +245,7 @@ namespace TFS_Parser
                 // Проецируем в TFS, чтобы не тащить лишние поля/трекер
                 .Select(data => new TFS
                 {
-                    ID            = data.ID,
+                    ID_DB            = data.ID_DB,
                     MAINLIST      = data.MAINLIST,
                     TYPEPARAM     = data.TYPEPARAM,
                     OGRSOVMLIST   = data.OGRSOVMLIST,
@@ -251,7 +253,7 @@ namespace TFS_Parser
                     TYPEDECISION  = data.TYPEDECISION,
                     ALTERNATELIST = data.ALTERNATELIST
                 })
-                .SingleOrDefaultAsync(ct);
+                .SingleOrDefault();
 
             if (tfs is null)
                 return null; // или бросьте исключение, если запись обязательна
@@ -282,7 +284,7 @@ namespace TFS_Parser
                 .Include(x => x.MAINLIST).ThenInclude(x => x.TFE).ThenInclude(x => x.PARAMS)
                 .Select(data => new TFS
                 {
-                    ID            = data.ID,
+                    ID_DB            = data.ID_DB,
                     MAINLIST      = data.MAINLIST,
                     TYPEPARAM     = data.TYPEPARAM,
                     OGRSOVMLIST   = data.OGRSOVMLIST,

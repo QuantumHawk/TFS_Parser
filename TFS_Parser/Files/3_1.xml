@@ -69,6 +69,6 @@
     <OGRSOVMLIST />
     <TYPEPARAM Value="0" />
     <TYPEDECISION Type="0" Sovm="0">
-        <Params V="0" T="0" VD="100000000" TD="100000000" />
+        <Params V="0" T="0" B="" VD="100000000" TD="100000000" BD="100000000"/>
     </TYPEDECISION>
 </ROOT>
