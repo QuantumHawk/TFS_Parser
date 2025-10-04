@@ -10,29 +10,43 @@ public class Calculate
 {
     private const string getPrecedentsParamAlt = @"SELECT ""ID"", ""B"", ""V"", ""T"" FROM ""PrecedentsParamAlt""";
     private const string getParamAlt = @"SELECT ""ID"", ""B"", ""V"", ""T"" FROM ""ROOTMAINLISTTFSTFEPARAMSParamAlt""";
+    //private const string connectionString = "Host=localhost;Database=postgres;Username=postgres;Password=admin;";
+    private const string connectionString = "Host=localhost;Database=test;Username=postgres;Password=admin;";
+    private const string insertSql = @" INSERT INTO domain_objects(id, grp, role, full_text, embedding) VALUES (@id, @grp, @role, @full, @emb);";
+    const string sql = @"
+            SELECT id,
+                   grp,
+                   COALESCE(role, '') AS role,
+                   full_text,
+                   embedding <-> @q AS distance,
+                   id_tfc
+            FROM domain_objects
+            ORDER BY distance
+            LIMIT 4;";
     
-    public async Task Test()
+    
+    //TODO:
+    //1. move migrations to this project - remove from TFS_Parser
+    //2. setup vector for domain table - write down all commands
+    //3. add method Create TFS with new changed param alt
+    public async Task CalculateEmbding()
     {
- 
-        
-        //select from db to get alternatives
-        // conn string
-        const string cs = "Host=localhost;Database=postgres;Username=postgres;Password=admin;";
-
-// 1) Регистрируем pgvector на DataSource
-        var dsb = new NpgsqlDataSourceBuilder(cs);
+        // 1) Регистрируем pgvector на DataSource
+        var dsb = new NpgsqlDataSourceBuilder(connectionString);
         dsb.UseVector(); // ВАЖНО
         await using var dataSource = dsb.Build();
 
-// 2) Читаем имена из вашей таблицы ИЗ dataSource
+        // 2) Читаем имена из вашей таблицы ИЗ dataSource
         var names = new List<string>();
         try
         {
             await using (var conn = dataSource.OpenConnection())
             {
-                //1. const string sql = @"SELECT ""NAME"" FROM ""ROOTMAINLISTTFSTFEPARAMSParamAlt""";
-                //2.
-                const string sql = @"SELECT ""NAME"" FROM ""PrecedentsParamAlt""";
+                //1 сначала считаем для парам альтернатив, которые есть в самой структуре
+                //TODO: 
+                const string sql = @"SELECT ""NAME"" FROM ""ROOTMAINLISTTFSTFEPARAMSParamAlt"" where ""ID_DB"" != 11";
+                //2 потом считаем для добавленных вручную прецедентов
+                //const string sql = @"SELECT ""NAME"" FROM ""PrecedentsParamAlt""";
                 await using var cmd1 = new NpgsqlCommand(sql, conn);
                 await using var reader = await cmd1.ExecuteReaderAsync();
                 while (await reader.ReadAsync())
@@ -45,7 +59,7 @@ public class Calculate
         }
 
 
-// 3) Парсим строки -> (Group, Role, Full)
+        // 3) Парсим строки -> (Group, Role, Full)
         var items = names.Select(line =>
         {
             var lb = line.IndexOf('[');
@@ -60,8 +74,8 @@ public class Calculate
             return new { Group = group, Role = role, Full = full };
         }).ToList();
 
-// 4) Считаем эмбеддинги (async, без .Result)
-//    По желанию делайте батчом: GenerateEmbeddingsAsync(items.Select(i=>i.Full))
+        // 4) Считаем эмбеддинги (async, без .Result)
+        //    По желанию делайте батчом: GenerateEmbeddingsAsync(items.Select(i=>i.Full))
         var apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
         var embedClient = new EmbeddingClient("text-embedding-3-small", apiKey);
 
@@ -72,11 +86,8 @@ public class Calculate
             vectors.Add(resp.Value.ToFloats().ToArray()); // 1536 значений
         }
 
-// 5) Вставляем в БД (через dataSource, один cmd, параметры реиспользуем)
-        const string insertSql = @"
-    INSERT INTO domain_objects(id, grp, role, full_text, embedding)
-    VALUES (@id, @grp, @role, @full, @emb);";
-
+        // 5) Вставляем в БД (через dataSource, один cmd, параметры реиспользуем)
+        
          using (var conn =  dataSource.OpenConnection())
          using (var tx =  conn.BeginTransaction())
          using (var cmd = new NpgsqlCommand(insertSql, conn, tx))
@@ -106,12 +117,11 @@ public class Calculate
         }
     }
 
-// переделать в джоин 2 таблиц и вытащить значения одним запросом
-    public async Task<Dictionary<Guid,List<float>>> Test2(string sql)
+    //TODO: переделать в джоин 2 таблиц и вытащить значения одним запросом
+    public async Task<Dictionary<Guid,List<float>>> GetTableDataBy(string query)
     {
         // 1) DataSource с pgvector-хэндлером
-        var cs = "Host=localhost;Database=postgres;Username=postgres;Password=admin;";
-        var dsb = new NpgsqlDataSourceBuilder(cs);
+        var dsb = new NpgsqlDataSourceBuilder(connectionString);
         await using var dataSource = dsb.Build();
         
         var TFEs = new Dictionary<Guid,List<float>>();
@@ -120,7 +130,7 @@ public class Calculate
             await using (var conn = dataSource.OpenConnection())
             {
 
-                await using var cmd = new NpgsqlCommand(sql, conn);
+                await using var cmd = new NpgsqlCommand(query, conn);
                 using var reader =  cmd.ExecuteReader();
                 while ( reader.Read())
                 {
@@ -146,11 +156,10 @@ public class Calculate
         return TFEs;
     }
     
-    public async Task Search()
+    public async Task FindSolution()
     {
         // 1) DataSource с pgvector-хэндлером
-        var cs = "Host=localhost;Database=postgres;Username=postgres;Password=admin;";
-        var dsb = new NpgsqlDataSourceBuilder(cs);
+        var dsb = new NpgsqlDataSourceBuilder(connectionString);
         dsb.UseVector();
         await using var dataSource = dsb.Build();
         await using var conn =  dataSource.OpenConnection();
@@ -164,24 +173,14 @@ public class Calculate
                 "Диагностика неисправности в офисе, системный");
             var q = new Vector(emb.Value.ToFloats().ToArray());
             // Поиск k-NN: роль — через COALESCE, плюс расстояние
-            const string sql = @"
-            SELECT id,
-                   grp,
-                   COALESCE(role, '') AS role,
-                   full_text,
-                   embedding <-> @q AS distance,
-                   id_tfc
-            FROM domain_objects
-            ORDER BY distance
-            LIMIT 4;";
 
             await using var searchCmd = new NpgsqlCommand(sql, conn);
             searchCmd.Parameters.AddWithValue("q", q);
 
             var result = new Dictionary<Guid,float>();
             
-            var precedents = await Test2(getPrecedentsParamAlt);
-            var original = await Test2(getParamAlt); 
+            var precedents = await GetTableDataBy(getPrecedentsParamAlt);
+            var original = await GetTableDataBy(getParamAlt); 
             var compareID = Guid.NewGuid();
             var comparedTFE = "";
             var compareB = 0.0;
@@ -305,5 +304,11 @@ public class Calculate
         // выполняем запрос
         var affected = await cmd.ExecuteNonQueryAsync();
         return affected;
+    }
+
+    //TODO
+    public async Task<int> CreateNewTfsAsync(Guid id, string tfe_text, double v, double t, double b)
+    {
+        return await CreateNewTfsAsync(id, tfe_text, v, t, b);
     }
 }
